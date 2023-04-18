@@ -319,8 +319,8 @@ We can scan row ids in:
   height={433}
   src="/img/blog/2023-04-20/index_scan_table_order.svg"
   width={650}
- Index forward scan  (multiple keys, table order) : scanning from (1) to (6)
- Index backward scan (multiple keys, table order) : scanning from (6) to (1)
+ Index forward scan  \(multiple keys, table order\) : scanning from (1) to (6)
+ Index backward scan \(multiple keys, table order\) : scanning from (6) to (1)
 </Banner>
 
 Index scan with multiple values in table order reads all row ids associated in table (or physical) order. 
