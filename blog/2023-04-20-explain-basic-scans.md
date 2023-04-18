@@ -319,6 +319,7 @@ We can scan row ids in:
   height={433}
   src="/img/blog/2023-04-20/index_scan_table_order.svg"
   width={650}
+>
  Index forward scan in table order: scanning from 1 to 6
  Index backward scan in table order: scanning from 6 to 1
 </Banner>
@@ -350,6 +351,7 @@ WHERE id in ('X', 'Y')
   height={433}
   src="/img/blog/2023-04-20/index_scan_index_order.svg"
   width={650}
+>
  Index forward scan in index order : scanning from 1 to 6
  Index backward scan in index order : scanning from 6 to 1
 </Banner>
