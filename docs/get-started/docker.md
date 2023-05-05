@@ -31,14 +31,21 @@ This can be done with a single command using:
     <CodeBlock className="language-shell">
       {`docker run \\
   -p 9000:9000 -p 9009:9009 -p 8812:8812 -p 9003:9003 \\
-  -v "$(pwd):/var/lib/questdb" \\
   questdb/questdb:${release.name}`}
     </CodeBlock>
   )}
 />
 
-This command starts a docker container from `questdb/questdb` image. In
-addition, it exposes some ports and also mounts a volume, to allow your data to persist.
+This command starts a Docker container from `questdb/questdb` image. In
+addition, it exposes some ports, allowing you to explore QuestDB.
+
+In order to configure QuestDB, it is recommended to mount a
+[volume](#v-parameter-to-mount-storage) to allow data persistance. This can be
+done by adding a `-v` flag to the above command:
+
+```
+-v "/host/volume/location:/var/lib/questdb"
+```
 
 Below each parameter is described in detail.
 
@@ -59,29 +66,12 @@ enough to expose `8812` if you only plan to use
 
 ### `-v` parameter to mount storage
 
-This parameter will make a local folder available to QuestDB docker container.
-It will have all data ingested to QuestDB, server logs and configuration.
+This parameter will make a local directory available to QuestDB Docker
+container. It will have all data ingested to QuestDB, server logs and
+configuration.
 
-The QuestDB [root_directory](/docs/concept/root-directory-structure) is in the
-following location:
-
-<!-- prettier-ignore-start -->
-
-export const volumeTabs = [
-  { label: "Linux", value: "linux", code: '/var/lib/questdb' },
-  { label: "macOS", value: "macos", code: '/var/lib/questdb' },
-  { label: "Windows", value: "windows", code: 'C:\\questdb' },
-]
-
-<Tabs defaultValue="linux" values={volumeTabs}>
-{ volumeTabs.map(tab => (
-  <TabItem key={tab.value} value={tab.value}>
-    <CodeBlock>{tab.code}</CodeBlock>
-  </TabItem>
-))}
-</Tabs>
-
-<!-- prettier-ignore-end -->
+The QuestDB [root_directory](/docs/concept/root-directory-structure/) is located
+at the `/var/lib/questdb` path in the container.
 
 ### Docker image version
 
@@ -119,7 +109,7 @@ When QuestDB is running, you can start interacting with it:
 - Port `8812` is used for Postgres. Check our
   [Postgres reference page](/docs/reference/api/postgres/).
 - Port `9009` is dedicated to ILP. Consult our
-  [InfluxDB page](/docs/reference/api/ilp/overview).
+  [InfluxDB protocol page](/docs/reference/api/ilp/overview/).
 
 ## Data persistence
 
@@ -150,12 +140,17 @@ migration or backups:
 ├── conf
 │   └── server.conf
 ├── db
-└── public
+├── log
+├── public
+└── snapshot (optional)
 ```
 
 For details on passing QuestDB server settings to a Docker container, see the
-[Docker section](/docs/reference/configuration#docker) of the server
+[Docker section](/docs/reference/configuration/#docker) of the server
 configuration documentation.
+
+For information about the file structure, see
+[root directory](/docs/concept/root-directory-structure/).
 
 ### Upgrade QuestDB version
 
@@ -269,7 +264,7 @@ provided in the `conf/log.conf` file, in this case in `./questdb-docker.log`:
 ```
 
 For more information on logging, see the
-[configuration reference documentation](/docs/reference/configuration#logging).
+[configuration reference documentation](/docs/reference/configuration/#logging).
 
 ### Restart an existing container
 
@@ -305,7 +300,7 @@ docker start docker_questdb
 docker stop docker_questdb
 ```
 
-Alternatively, users can obtain a running container's ID with 'docker ps' and
+Alternatively, users can obtain a running container's ID with `docker ps` and
 restart it using the
 [UUID short identifier](https://docs.docker.com/engine/reference/run/#name---name):
 

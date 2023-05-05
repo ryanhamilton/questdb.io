@@ -11,6 +11,9 @@ import EditThisPage from "@theme/EditThisPage"
 import styles from "./styles.module.css"
 import customFields from "../../config/customFields"
 import { ensureTrailingSlash } from "../../utils"
+import { Chip } from "../BlogListPage/Chip"
+import { StructuredData } from "../../components/StructuredData"
+import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 
 function useReadingTimePlural() {
   const { selectMessage } = usePluralForm()
@@ -33,6 +36,7 @@ type MetadataWithSource = Metadata & { source: string }
 
 function BlogPostItem(props: Props): JSX.Element {
   const readingTimePlural = useReadingTimePlural()
+  const { siteConfig } = useDocusaurusContext()
   const {
     children,
     frontMatter,
@@ -69,6 +73,48 @@ function BlogPostItem(props: Props): JSX.Element {
   return (
     <>
       <Seo {...{ keywords, image }} />
+      <StructuredData>
+        {{
+          "@graph": [
+            {
+              "@type": "BreadcrumbList",
+              name: "Blog post",
+              itemListElement: [
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Home",
+                  item: siteConfig.url,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 2,
+                  name: "Blog",
+                  item: `${siteConfig.url}/blog`,
+                },
+                {
+                  "@type": "ListItem",
+                  position: 3,
+                  name: title,
+                },
+              ],
+            },
+            {
+              "@type": "BlogPosting",
+              headline: title,
+              url: permalink,
+              datePublished: metadata.formattedDate,
+              image,
+              author: {
+                "@type": "Person",
+                name: author,
+                url: authorURL,
+                image: authorImageURL,
+              },
+            },
+          ],
+        }}
+      </StructuredData>
 
       <header>
         <TitleHeading className={styles.title}>
@@ -109,29 +155,29 @@ function BlogPostItem(props: Props): JSX.Element {
 
       <footer className={styles.footer}>
         {isTruncated ? (
-          <Link
-            to={metadata.permalink}
-            aria-label={`Read more about ${title}`}
+          <Chip
+            permalink={metadata.permalink}
+            label="Read Article"
             className={styles.readMore}
-          >
-            Read More
-          </Link>
+          />
         ) : (
           <>
             {tags.length > 0 && (
               <div className={styles.tags}>
                 Tags:
                 <ul className={styles.tagsList}>
-                  {tags.map(({ label, permalink: tagPermalink }) => (
-                    <li key={tagPermalink}>
-                      <Link
-                        key={tagPermalink}
-                        to={ensureTrailingSlash(tagPermalink)}
-                      >
-                        {label}
-                      </Link>
-                    </li>
-                  ))}
+                  {tags
+                    .filter(({ label }) => label !== "pinned")
+                    .map(({ label, permalink: tagPermalink }) => (
+                      <li key={tagPermalink}>
+                        <Link
+                          key={tagPermalink}
+                          to={ensureTrailingSlash(tagPermalink)}
+                        >
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
                 </ul>
               </div>
             )}

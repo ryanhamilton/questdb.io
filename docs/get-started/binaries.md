@@ -7,19 +7,21 @@ description:
 ---
 
 import CodeBlock from "@theme/CodeBlock"
-import InterpolateReleaseData from "../../src/components/InterpolateReleaseData"
-import { getAssets } from '../../src/utils/get-assets'
-import Tabs from "@theme/Tabs";
-import TabItem from "@theme/TabItem";
+import { getAssets } from "../../src/utils/get-assets"
+import Tabs from "@theme/Tabs"
+import TabItem from "@theme/TabItem"
+import { TabsPlatforms } from "../../src/modules/TabsPlatforms"
 
 export const platforms = [
   { label: "Any (no JVM)", value: "noJre" },
   { label: "Linux", value: "linux" },
   { label: "FreeBSD", value: "bsd" },
   { label: "Windows", value: "windows" },
-];
+]
 
-This page describes how to download and run QuestDB via binaries. QuestDB comes with a `questdb.sh` script on Linux or FreeBSD, and a `questdb.exe` executable on Windows. For macOS, check out [Homebrew](/docs/get-started/homebrew).
+This page describes how to download and run QuestDB via binaries. QuestDB comes
+with a `questdb.sh` script on Linux or FreeBSD, and a `questdb.exe` executable
+on Windows. For macOS, check out [Homebrew](/docs/get-started/homebrew/).
 
 ## Prerequisites
 
@@ -31,7 +33,8 @@ You need to have Java 11 installed locally. To check your installed version:
 java -version
 ```
 
-If you do not have Java installed, install one of the following supported packages for your operating system:
+If you do not have Java installed, install one of the following supported
+packages for your operating system:
 
 - AdoptOpenJDK
 - Amazon Corretto
@@ -49,52 +52,32 @@ folder.
 
 <!-- prettier-ignore-start -->
 
-<Tabs
-  defaultValue="noJre"
-  values={platforms}
->
-  {platforms.map((platform) => (
-    <TabItem key={platform} value={platform.value}>
-      <InterpolateReleaseData
-        renderText={(release) => {
-          const assets = getAssets(release)
-          const href = assets[platform.value].href
-          return (
-            <a href={href} rel="noopener noreferrer" target="_blank">
-              {href.split("/").reverse()[0]}
-            </a>
-          )
-        }}
-      />
-    </TabItem>
-  ))}
-</Tabs>
+<TabsPlatforms
+  platforms={platforms}
+  render={({ href }) => (
+    <a href={href} rel="noopener noreferrer" target="_blank">
+      {href.split("/").reverse()[0]}
+    </a>
+  )}
+/>
 
 <!-- prettier-ignore-end -->
 
-The Java runtime is packaged directly with QuestDB and you do not need anything else.
+The Java runtime is packaged directly with QuestDB and you do not need anything
+else.
 
 ## Extract the tarballs
 
 <!-- prettier-ignore-start -->
 
-<Tabs defaultValue="noJre" values={platforms}>
-  {platforms.map((platform) => (
-    <TabItem key={platform} value={platform.value}>
-      <InterpolateReleaseData
-        renderText={(release) => {
-          const assets = getAssets(release)
-          const href = assets[platform.value].href
-          return (
-            <CodeBlock className="language-shell">
-              {`tar -xvf ${href.split("/").reverse()[0]}`}
-            </CodeBlock>
-          )
-        }}
-      />
-    </TabItem>
-  ))}
-</Tabs>
+<TabsPlatforms
+  platforms={platforms}
+  render={({ href }) => (
+    <CodeBlock className="language-shell">
+      {`tar -xvf ${href.split("/").reverse()[0]}`}
+    </CodeBlock>
+  )}
+/>
 
 <!-- prettier-ignore-end -->
 
@@ -124,7 +107,13 @@ values={[
 
 
 ```shell
+-- To run the instance as a windows service (preferably as a privileged account):
+questdb.exe install
 questdb.exe start
+
+-- To run a one-off instance in the current work directory:
+
+questdb.exe
 ```
 
 </TabItem>
@@ -132,16 +121,35 @@ questdb.exe start
 
 </Tabs>
 
+The file structure is as the following:
+
+```bash
+
+/questdb
+├── conf
+├── db
+├── log
+└── public
+```
+
+For information about the file structure, see
+[root directory](/docs/concept/root-directory-structure/).
+
+
 ### Upgrade QuestDB version
 
 :::note
 
-Check the [release notes](https://github.com/questdb/questdb/releases) and ensure
-that necessary [backup](/docs/operations/backup/) is completed.
+Check the [release notes](https://github.com/questdb/questdb/releases) and
+ensure that necessary [backup](/docs/operations/backup/) is completed.
 
 :::
 
-To upgrade the QuestDB version: stop the instance, overwrite the binaries folder with new binaries, and then restart the instance:
+Steps to upgrade the QuestDB version:
+
+- Stop the instance
+- Overwrite the `bin` and `lib` folders with the new files
+- Restart the instance
 
 <!-- prettier-ignore-start -->
 
@@ -159,7 +167,7 @@ values={[
 ```shell
 ./questdb.sh stop
 
-(Overwrite the binaries folder with new binaries)
+(Overwrite `bin` and `lib` folders with the new files)
 
 ./questdb.sh start
 ```
@@ -173,7 +181,7 @@ values={[
 ```shell
 questdb.exe stop
 
-(Overwrite the binaries folder with new binaries)
+(Overwrite `bin` and `lib` folders with the new files)
 
 questdb.exe start
 ```
@@ -187,5 +195,5 @@ questdb.exe start
 ## Next steps
 
 Once you extracted the tarball, you are ready to use QuestDB. Navigate to our
-[command-line options](/docs/reference/command-line-options) page to learn more
+[command-line options](/docs/reference/command-line-options/) page to learn more
 about its usage.

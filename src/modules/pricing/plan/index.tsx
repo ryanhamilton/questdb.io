@@ -3,11 +3,8 @@ import Button from "@theme/Button"
 import { Section } from "../../../components/Section"
 import style from "./styles.module.css"
 import clsx from "clsx"
-
-import { Dialog } from "../../../components/Dialog"
-import { ContactForm } from "../../cloud/ContactForm"
-import styled from "styled-components"
 import { formatPrice } from "../../../utils"
+import customFields from "../../../config/customFields"
 
 export type PricingPlan = {
   type: "entry" | "performant" | "high-performance"
@@ -17,11 +14,8 @@ export type PricingPlan = {
   specs: Array<{ label: string; value: string }>
   subtext: string
   highlighted?: boolean
+  url?: string
 }
-
-const StyledDialogContent = styled(Dialog.Content)`
-  padding: 0;
-`
 
 export const Plan = (plan: PricingPlan) => (
   <article className={style.root}>
@@ -57,16 +51,14 @@ export const Plan = (plan: PricingPlan) => (
     </div>
 
     <div className={style.cta}>
-      <Dialog>
-        <Dialog.Trigger>
-          <Button size="small" dataHook={`get-access-button-plan-${plan.type}`}>
-            Get Access
-          </Button>
-        </Dialog.Trigger>
-        <StyledDialogContent>
-          <ContactForm interestedIn={plan.type} modal />
-        </StyledDialogContent>
-      </Dialog>
+      <Button
+        size="small"
+        dataHook={`get-access-button-plan-${plan.type}`}
+        to={plan.url ?? customFields.cloudUrl}
+        newTab={false}
+      >
+        Get started
+      </Button>
     </div>
   </article>
 )

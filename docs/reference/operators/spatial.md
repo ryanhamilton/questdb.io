@@ -6,8 +6,8 @@ description: Spatial operators reference documentation.
 
 This page describes the available operators to assist with performing spatial
 calculations. For more information on this type of data, see the
-[geohashes documentation](/docs/concept/geohashes) and the
-[spatial functions](/docs/reference/function/spatial) which have been added to
+[geohashes documentation](/docs/concept/geohashes/) and the
+[spatial functions](/docs/reference/function/spatial/) which have been added to
 help with filtering and generating data.
 
 ## within
@@ -17,11 +17,15 @@ equal to are within another geohash.
 
 :::info
 
-- The `within` operator can only be used in `LATEST BY` queries and all symbol
+- The `within` operator can only be used in `LATEST ON` queries and all symbol
   columns within the query **must be indexed**.
 
 - Only **geohash literals** (`#ezzn5kxb`) are supported as opposed to geohashes
   passed as strings (`'ezzn5kxb'`).
+
+- Filtering happens logically after `LATEST ON`.
+
+- Apart from the `within` operator, only simple filters on the designated timestamp are allowed in the `WHERE` clause.
 
 :::
 

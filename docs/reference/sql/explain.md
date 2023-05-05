@@ -70,7 +70,7 @@ The following list contains some plan node types:
 - `GroupBy` - group by with or without key(s). If `vectorized` field shows
   `true`, then the node is parallelized and uses vectorized calculations.
 - `Hash` - subnode of this node is used to build a hash table that is later
-  looked up (usually in a `JION` clause but also applies to `EXCEPT` or
+  looked up (usually in a `JOIN` clause but also applies to `EXCEPT` or
   `INTERSECT`).
 - `Index forward/backward scan` - scans all row ids associated with a given
   `symbol` value from start to finish or vice versa.
@@ -261,4 +261,5 @@ methods.
 
 This section includes links to additional information such as tutorials:
 
-- [SQL Performance Tuning: Introducing EXPLAIN](/blog/sql-performance-tuning-introducing-explain/)
+- [EXPLAIN Your SQL Query Plan](/blog/explain-sql-query-plan/)
+- [Exploring Query Plan Scan Nodes with SQL EXPLAIN](/blog/exploring-query-plan-scan-nodes-sql-explain/)

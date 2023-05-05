@@ -17,37 +17,26 @@ type Opening = {
 
 const currentOpenings: Opening[] = [
   {
-    href: "/careers/growth-engineer-open-source/",
-    title: "Growth Engineer (open source)",
+    href: "/careers/technical-content-lead/",
+    title: "Technical Content Lead",
     location: "Remote",
   },
+  
   {
-    href: "/careers/senior-backend-engineer-python/",
-    title: "Backend Engineers (Python)",
+    href: "/careers/ui-frontend-developer/",
+    title: "UI / Front End Developer",
+    location: "Remote",
+  },
+
+  {
+    href: "/careers/senior-backend-engineer/",
+    title: "Senior Backend Engineer",
     location: "Remote",
   },
 
   {
     href: "/careers/core-database-engineer/",
     title: "Core Database Engineers",
-    location: "Remote",
-  },
-
-  {
-    href: "/careers/developer-relations-engineer/",
-    title: "Developer Relations Engineers",
-    location: "Remote",
-  },
-
-  {
-    href: "/careers/senior-cloud-engineer/",
-    title: "Cloud Engineers",
-    location: "Remote",
-  },
-
-  {
-    href: "/careers/solution-engineer/",
-    title: "Solution Engineer",
     location: "Remote",
   },
 ]

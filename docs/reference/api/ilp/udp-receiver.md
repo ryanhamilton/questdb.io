@@ -7,7 +7,7 @@ description: InfluxDB line protocol UDP receiver reference documentation.
 :::note
 
 The UDP receiver is deprecated since QuestDB version 6.5.2.
-We recommend the [TCP receiver](/docs/reference/api/ilp/tcp-receiver/) instead.
+We recommend the [TCP receiver](/docs/reference/api/ilp/overview/) instead.
 
 :::
 
@@ -36,11 +36,11 @@ Uncommitted rows are committed either:
 ## Configuration
 
 The UDP receiver configuration can be completely customized using
-[configuration keys](/docs/reference/configuration#udp-specific-settings). You
+[configuration keys](/docs/reference/configuration/#udp-specific-settings). You
 can use this to configure the IP address and port the receiver binds to, commit
 rates, buffer size, whether it should run on a separate thread etc.
 
 ## Examples
 
 Find an example of how to use this in the
-[InfluxDB sender library section](/docs/reference/api/java-embedded#influxdb-sender-library).
+[InfluxDB sender library section](/docs/reference/api/java-embedded/#influxdb-sender-library).

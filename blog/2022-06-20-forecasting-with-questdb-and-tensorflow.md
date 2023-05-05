@@ -16,7 +16,7 @@ keywords:
   - tensorflow
   - machine learning
 image: /img/blog/2022-06-20/banner.png
-tags: [tutorial, python, tensorflow, machine learning, data science]
+tags: [python, tensorflow, machine learning, data science, time-series]
 ---
 
 This post is contributed by
@@ -530,3 +530,7 @@ as you have seen in this tutorial.
 If you like this content, we'd love to know your thoughts! Feel free to
 [get started on GitHub](https://github.com/questdb/questdb#try-questdb) and come
 say hello [in our Slack Community]({@slackUrl@}).
+
+## Additional Resources
+
+[What is Time-Series Data?](/blog/time-series-data/)

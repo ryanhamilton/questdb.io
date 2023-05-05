@@ -30,7 +30,7 @@ QuestDB ships with an embedded Web Console running by default on port `9000`.
 
 import Screenshot from "@theme/Screenshot"
 
-<a href="web-console">
+<a href="/docs/develop/web-console/">
     <Screenshot
     alt="Screenshot of the Web Console"
     height={375}
@@ -54,14 +54,14 @@ my_table;
 Aside from the Code Editor, the Web Console includes a data visualization panel
 for viewing query results as tables or graphs and an Import tab for uploading
 datasets as CSV files. For more details on these components and general use of
-the console, see the [Web Console](/docs/develop/web-console) page.
+the console, see the [Web Console](/docs/develop/web-console/) page.
 
 ## PostgreSQL wire protocol
 
 You can query data using the Postgres endpoint
 that QuestDB exposes which is accessible by default via port `8812`. Examples in
-multiple languages are shown below. To learn more, check out our docs about 
-[Postgres compatibility and tools](/docs/reference/api/postgres).
+multiple languages are shown below. To learn more, check out our docs about
+[Postgres compatibility and tools](/docs/reference/api/postgres/).
 
 <Tabs defaultValue="python" values={[
   { label: "Python", value: "python" },
@@ -78,34 +78,27 @@ multiple languages are shown below. To learn more, check out our docs about
 
 
 ```python
-import psycopg2
+import psycopg as pg
+import time
 
-connection = None
-cursor = None
-try:
-    connection = psycopg2.connect(
-        user='admin',
-        password='quest',
-        host='127.0.0.1',
-        port='8812',
-        database='qdb')
-    cursor = connection.cursor()
-    postgreSQL_select_Query = 'SELECT x FROM long_sequence(5);'
-    cursor.execute(postgreSQL_select_Query)
-    print('Selecting rows from test table using cursor.fetchall')
-    mobile_records = cursor.fetchall()
+# Connect to an existing QuestDB instance
 
-    print("Print each row and it's columns values")
-    for row in mobile_records:
-        print("y = ", row[0], "\n")
-except (Exception, psycopg2.Error) as error:
-    print("Error while fetching data from PostgreSQL", error)
-finally:
-    if cursor:
-        cursor.close()
-    if connection:
-        connection.close()
-    print("PostgreSQL connection is closed")
+conn_str = 'user=admin password=quest host=127.0.0.1 port=8812 dbname=qdb'
+with pg.connect(conn_str, autocommit=True) as connection:
+
+    # Open a cursor to perform database operations
+
+    with connection.cursor() as cur:
+
+        #Query the database and obtain data as Python objects.
+
+        cur.execute('SELECT * FROM trades_pg;')
+        records = cur.fetchall()
+        for row in records:
+            print(row)
+
+# the connection is now closed
+
 ```
 
 </TabItem>
@@ -125,6 +118,7 @@ public class App {
         Properties properties = new Properties();
         properties.setProperty("user", "admin");
         properties.setProperty("password", "quest");
+        //set sslmode value to 'require' if connecting to a QuestDB Cloud instance
         properties.setProperty("sslmode", "disable");
 
         final Connection connection = DriverManager.getConnection(
@@ -308,7 +302,7 @@ await using (var reader = await command.ExecuteReaderAsync()) {
 ```ruby
 require 'pg'
 begin
-    conn =PG.connect( host: "127.0.0.1", port: 8812, dbname: 'qdb', 
+    conn =PG.connect( host: "127.0.0.1", port: 8812, dbname: 'qdb',
                       user: 'admin', password: 'quest' )
     rows = conn.exec 'SELECT x FROM long_sequence(5);'
     rows.each do |row|
@@ -363,13 +357,13 @@ QuestDB exposes a REST API for compatibility with a wide range of libraries and
 tools. The REST API is accessible on port `9000` and has the following
 query-capable entrypoints:
 
-|Entrypoint                                 |HTTP Method|Description                            |API Docs                                                    |
-|:------------------------------------------|:----------|:--------------------------------------|:-----------------------------------------------------------|
-|[`/exp?query=..`](#exp-sql-query-to-csv)   |GET        |Export SQL Query as CSV                |[Reference](/docs/reference/api/rest#exp---export-data)     |
-|[`/exec?query=..`](#exec-sql-query-to-json)|GET        |Run SQL Query returning JSON result set|[Reference](/docs/reference/api/rest#exec---execute-queries)|
+|Entrypoint                                 |HTTP Method|Description                            | API Docs                                                      |
+|:------------------------------------------|:----------|:--------------------------------------|:--------------------------------------------------------------|
+|[`/exp?query=..`](#exp-sql-query-to-csv)   |GET        |Export SQL Query as CSV                | [Reference](/docs/reference/api/rest/#exp---export-data)      |
+|[`/exec?query=..`](#exec-sql-query-to-json)|GET        |Run SQL Query returning JSON result set| [Reference](/docs/reference/api/rest/#exec---execute-queries) |
 
 For details such as content type, query parameters and more, refer to the
-[REST API](/docs/reference/api/rest) docs.
+[REST API](/docs/reference/api/rest/) docs.
 
 ### `/exp`: SQL Query to CSV
 

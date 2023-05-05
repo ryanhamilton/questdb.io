@@ -2,9 +2,11 @@ import React from "react"
 import Button from "@theme/Button"
 import { Section } from "../../components/Section"
 import styles from "./styles.module.css"
-import Link from "@docusaurus/Link"
+import { useCloudUrl } from "../../utils/cloud-url"
 
 export const Header = () => {
+  const cloudUrl = useCloudUrl()
+
   return (
     <Section fullWidth center>
       <div className={styles.titles}>
@@ -18,10 +20,11 @@ export const Header = () => {
           cloud.
         </Section.Subtitle>
 
-        <div className={styles.getStartedButtons}>
-          <Link to="/cloud/" className={styles.joinPublicPreviewLink}>
-            <Button newTab={false}>Join private preview</Button>
-          </Link>
+        <div className={styles.mainCTA}>
+          <Button to={cloudUrl} newTab={false}>
+            Start building with Cloud
+          </Button>
+          <span>$200 in free credits</span>
         </div>
       </div>
     </Section>
