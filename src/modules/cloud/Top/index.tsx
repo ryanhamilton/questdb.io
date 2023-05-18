@@ -17,7 +17,15 @@ export const Top = () => {
     <Section className={localStyle.section}>
       <div className={localStyle.columns}>
         <div className={localStyle.textColumn}>
-          <Section.Title level={1}>QuestDB Cloud</Section.Title>
+          <Section.Title level={1}>
+            <img
+              width="100%"
+              height="80"
+              src="/img/logos/questdb-cloud.svg"
+              alt="QuestDB Cloud"
+              title="QuestDB Cloud"
+            />
+          </Section.Title>
 
           <Section.Subtitle>
             The fastest open source time series database fully managed on the
