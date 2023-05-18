@@ -1,7 +1,9 @@
 import React from "react"
 import { Section } from "../../../components/Section"
-import localStyle from "./styles.module.css"
+import styles from "./styles.module.css"
 import { StartBuilding } from "./start-building"
+import ThemedImage from "@theme/ThemedImage"
+import useBaseUrl from "@docusaurus/useBaseUrl"
 
 const featureList = [
   "Database-as-a-service",
@@ -14,14 +16,17 @@ const featureList = [
 
 export const Top = () => {
   return (
-    <Section className={localStyle.section}>
-      <div className={localStyle.columns}>
-        <div className={localStyle.textColumn}>
+    <Section className={styles.section}>
+      <div className={styles.columns}>
+        <div className={styles.textColumn}>
           <Section.Title level={1}>
-            <img
+            <ThemedImage
               width="100%"
               height="80"
-              src="/img/logos/questdb-cloud.svg"
+              sources={{
+                light: useBaseUrl("/img/logos/questdb-cloud.dark.svg"),
+                dark: useBaseUrl("/img/logos/questdb-cloud.svg"),
+              }}
               alt="QuestDB Cloud"
               title="QuestDB Cloud"
             />
@@ -32,9 +37,9 @@ export const Top = () => {
             cloud.
           </Section.Subtitle>
 
-          <ul className={localStyle.list}>
+          <ul className={styles.list}>
             {featureList.map((feature) => (
-              <li className={localStyle.bullet} key={feature}>
+              <li className={styles.bullet} key={feature}>
                 <span>{feature}</span>
               </li>
             ))}
