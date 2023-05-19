@@ -1,59 +1,63 @@
 ---
-title: Exploring Crypto Prices with QuestDB and Pandas
+title: Exploring Financial Tick Data with Jupyter Notebook and Pandas
 author: Yitaek Hwang
 author_title: Guest
 author_url: https://github.com/Yitaek
 author_image_url: https://avatars.githubusercontent.com/Yitaek
 description:
-  Visualizing historical prices of cryptocurrencies by ingesting data into
-  QuestDB and analyzing trends with pandas, matplotlib, and seaborn.
-  records on the fly.
-keywords:
-  - timeseries
-  - pandas
-  - matplotlib
-  - seaborn
-  - marketdata
-tags: [tutorial, crypto, python, pandas, market data, matplotlib]
-image: /img/blog/shared/og-pandas.png
+  Visualizing financial tick data by ingesting data into QuestDB and analyzing
+  trends with Pandas, Jupyter Notebook, matplotlib, and seaborn. records on the fly.
+tags:
+  [tutorial, crypto, python, pandas, market data, matplotlib, jupyter notebook]
+image: /img/blog/2023-05-22/banner.png
+slug: exploring-financial-tick-data-jupyter-notebook-pandas
 ---
 
 import Banner from "@theme/Banner"
 
 <Banner
-  alt="A photograph of a laptop displaying candle charts of stock market data"
+  alt="A image of financial data with logos of Pandas, Jupyter Notebook, and QuestDB"
   height={500}
-  src="/img/blog/2022-03-08/banner.jpeg"
+  src="/img/blog/2023-05-22/banner.png"
   width={692}
->
-  Photo by <a href="https://unsplash.com/@peiobty">Pierre Borthiry</a> via{" "}
-  <a href="https://unsplash.com">Unsplash</a>
-</Banner>
+></Banner>
 
-_This submission comes from one of our community contributors
-[Yitaek Hwang](https://yitaek.medium.com/)_.
+## The advantage of using Pandas
 
-In [Part I of this series](/blog/2022/02/10/questdb-google-data-studio), we
-used Google Data Studio to quickly import multiple data sources and compare the
-price action of various cryptocurrencies over time. Even though Google Data
-Studio provides an easy user-interface and some nice graphing features, it was
-limited in what it could do in terms of analyzing the dataset. In this post, we
-will use the popular Python libraries (pandas, matplotlib, and seaborn) to
-explore the dataset further.
+Pandas is one of the most popular open-source Python libraries used for data
+analysis and manipulation. It provides standard data structures (e.g.,
+Dataframe, Series) and utility functions that make it easier to sanitize,
+transform, and analyze various data sets. Pandas also has great support for
+NumPy’s `datetime64` and `timedelta64` types as well as integrations with other
+popular libraries such as `scikits.timeseries`, which makes for a great choice
+to process and analyze time series data.
+
+The extensive capabilities of Pandas for time-series data make it a great
+complementary piece for QuestDB for a data analytics tech stack. Pandas provides
+the data structure for working with various time-series data types and analytic
+libraries in memory, while QuestDB provides fast and reliable storage options.
+When used in combinations, users can easily manipulate data either in Pandas or
+QuestDB for insights.
+
+In this article, we will explore crypto prices with Pandas and QuestDB, keeping
+in mind the various scenarios for integration. We will walk through several
+options to ingest data into a Python workspace or QuestDB, analyze the dataset
+using Pandas or SQL, and finally visualize the results.
 
 ## Prerequisites
 
 - [Crypto dataset](https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory)
 - [Jupyter Notebook](https://jupyter.org/)
-- [QuestDB](https://questdb.io/)
+- [QuestDB](/docs/get-started/docker/)
 
-## Importing Data
+## Importing financial tick data
 
-_NOTE: If you still have QuestDB running from Part I on Google Cloud, you can
-skip to the next step._
+Depending on the size and the format of the data, we have a few options to
+import data for analysis. The example crypto dataset from Kaggle is relatively
+small and in a nice CSV format that is well-supported by QuestDB. In this case,
+we can easily use the console UI to upload the CSV files.
 
-For simplicity, we will run QuestDB locally via Docker and import the datasets
-via the console UI. Download and run the latest version of QuestDB:
+Download and run the latest version of QuestDB:
 
 ```
 $ docker run -p 9000:9000 \
@@ -63,10 +67,11 @@ $ docker run -p 9000:9000 \
    questdb/questdb
 ```
 
-Navigate to localhost:9000, click on the “Upload” icon on the left-hand panel
+Navigate to `localhost:9000`, click on the “Upload” icon on the left-hand panel
 and import the
 [csv files of interest](https://www.kaggle.com/sudalairajkumar/cryptocurrencypricehistory).
-This example will use the Solana dataset, but any of the coins from the dataset
+
+This example will use the Bitcoin dataset, but any of the coins from the dataset
 will also work.
 
 import Screenshot from "@theme/Screenshot"
@@ -74,9 +79,39 @@ import Screenshot from "@theme/Screenshot"
 <Screenshot
   alt="Import CSV section of QuestDB Web Console"
   height={281}
-  src="/img/blog/2022-03-08/import.png"
+  src="/img/blog/2023-05-22/import-ui.png"
   width={692}
 />
+
+If you have datasets in formats that QuestDB does not natively support (e.g.,
+parquet), you can also use the official
+[Python client](https://py-questdb-client.readthedocs.io/en/latest/api.html) to
+load Pandas data structure into QuestDB tables. For example, we can build our
+own historical coin pricing information with the
+[Deephaven](https://github.com/deephaven-examples/deephaven-plus-cryptowatch)
+[CryptoWatch API](https://github.com/deephaven-examples/deephaven-plus-cryptowatch).
+Once you have the parquet file, you can load it into Pandas and use the
+[Python `questdb` package](https://github.com/questdb/py-questdb-client) to load
+it into QuestDB.
+
+Note that we are first loading the data into QuestDB prior to doing any
+analysis. We could also load it into Pandas and do some preliminary exploration
+and only import a subset of the data to QuestDB. Either option can work, but for
+large datasets, it’s often a good idea to load data first into QuestDB and
+downsample before analyzing via Pandas. This is because Pandas loads all the
+data in memory, making it inherently limited by the available memory of the
+machine it is running on.
+
+Ultimately the order of operation to load data into Pandas or QuestDB first
+depends on the structure and source of the data, as well as the makeup of your
+data organization. For example, if a different team is responsible for data
+ingestion either via Kafka or daily CSV upload, it may make sense to load it
+into QuestDB first. On the other hand, if your data science team is closer to
+the source of the data, you could do some data cleaning first in Pandas before
+shipping sanitized datasets to downstream teams for visualization.
+
+For simplicity's sake, we will use the Kaggle dataset in the rest of this
+tutorial.
 
 ## Setting up Jupyter Notebook
 
@@ -86,14 +121,15 @@ favorite Python environment management tool such as
 [pipenv](https://pipenv.pypa.io/). Alternatively, you can also download
 [Anaconda Navigator](https://www.anaconda.com/products/individual) for your OS.
 
-```
+```shell
 $ pip install notebook
 ```
 
 Now install the packages we will use to explore the dataset:
 
-```
-$ pip install numpy pandas matplotlib seaborn psycogp2
+```shell
+$ pip install –upgrade pip # upgrade pip to at least 20.3
+$ pip install numpy pandas==1.5.3 matplotlib seaborn psycopg
 ```
 
 If you used Anaconda Navigator, go under Environments > Search Packages to
@@ -102,46 +138,52 @@ install:
 <Screenshot
   alt="A screenshot of Anaconda Navigator"
   height={446}
-  src="/img/blog/2022-03-08/anaconda_navigator.png"
+  src="/img/blog/2023-05-22/anaconda_navigator.png"
   width={692}
 />
 
 Now we’re ready to launch the notebook and start exploring the data:
 
-```
+```shell
 $ jupyter notebook
 ```
 
 ## Connecting to QuestDB
 
-First, we need to use the `psycopg2` library to connect to QuestDB and import
-the data.
+First, we need to use the `psycopg` library to connect to QuestDB and import the
+data:
 
 ```python
 import pandas as pd
 import numpy as np
-import psycopg2 as pg
+import psycopg
 
-engine = pg.connect("dbname='qdb' user='admin' host='127.0.0.1' port='8812' password='quest'")
-df = pd.read_sql('select * from coin_Solana.csv', con=engine)
+con = psycopg.connect("dbname='qdb' user='admin' host='127.0.0.1' port='8812' password='quest'")
+df = pd.read_sql('select * from coin_Bitcoin.csv', con)
 ```
-
-(_NOTE: if you are re-using QuestDB from Part I, change the host to the IP
-address of the load balancer._)
 
 Now we can run some quick queries to make sure our import was successful. The
 `head` and `tail` functions are useful in this case for a quick sanity check:
 
 ```python
 df.head()
+```
 
+<Screenshot
+  alt="A screenshot showing a head function in Jupyter Notebook"
+  height={305}
+  src="/img/blog/2023-05-22/head.png"
+  width={692}
+/>
+
+```python
 df.tails()
 ```
 
 <Screenshot
-  alt="A screenshot showing head and tail functions in Jupyter Notebook"
+  alt="A screenshot showing a tail function in Jupyter Notebook"
   height={305}
-  src="/img/blog/2022-03-08/head_and_tail.png"
+  src="/img/blog/2023-05-22/tail.png"
   width={692}
 />
 
@@ -155,7 +197,7 @@ df.info()
 <Screenshot
   alt="A screenshot showing an info function in Jupyter Notebook"
   height={231}
-  src="/img/blog/2022-03-08/info.png"
+  src="/img/blog/2023-05-22/info.png"
   width={692}
 />
 
@@ -166,7 +208,7 @@ df.describe()
 <Screenshot
   alt="A screenshot showing head a describe function in Jupyter Notebook"
   height={206}
-  src="/img/blog/2022-03-08/describe.png"
+  src="/img/blog/2023-05-22/describe.png"
   width={692}
 />
 
@@ -183,10 +225,24 @@ These queries should return with `False` for all the columns. If you have
 missing values in your dataset, you can use the `dropna` function to remove that
 row or column.
 
-## Exploring the Data
+In this example, we are simply loading the entire dataset via a select \* query.
+But in general, if your dataset is big, it’ll be more performant to select a
+smaller subset by running SQL queries on QuestDB and only exporting the final
+results to Pandas. This will circumvent the memory limitations of Pandas as
+noted before and will also speed up the export process.
+
+Also, this approach may also make more sense if your team is more comfortable
+with running SQL queries to narrow down the data first. Standard SQL queries to
+filter/join/order columns can be combined with time series-related helper
+functions such as aggregate functions (e.g., `avg`, `first/last`, `ksum`, etc)
+to manipulate and transform the data of interest. Then a smaller subset of this
+query can be imported into Python for further analysis or visualization with
+Python libraries.
+
+## Exploring the data
 
 Now that we have our dataset in Jupyter, we can run answer some simple
-questions. For example, we can find the five lowest price of Solana by running
+questions. For example, we can find the five lowest prices of Bitcoin by running
 the `nsmallest` function on the column we’re interested in (e.g. High, Low,
 Open, Close). Similarly, we can use the `nlargest` function for the opposite:
 
@@ -198,7 +254,7 @@ df.nsmallest(5, 'High')
 <Screenshot
   alt="A screenshot showing nlargest function in Jupyter Notebook"
   height={165}
-  src="/img/blog/2022-03-08/nlargest.png"
+  src="/img/blog/2023-05-22/nlargest.png"
   width={692}
 />
 
@@ -212,7 +268,7 @@ df.query('Open < Close').head()
 <Screenshot
   alt="A screenshot showing query function in Jupyter Notebook"
   height={151}
-  src="/img/blog/2022-03-08/query.png"
+  src="/img/blog/2023-05-22/query.png"
   width={692}
 />
 
@@ -229,7 +285,7 @@ df_weekly.head()
 <Screenshot
   alt="A screenshot showing resample function on date in Jupyter Notebook"
   height={196}
-  src="/img/blog/2022-03-08/resample_on_date.png"
+  src="/img/blog/2023-05-22/resample_on_date.png"
   width={692}
 />
 
@@ -237,7 +293,7 @@ Now our data is aggregated by weeks. Similarly, we can get a rolling average
 over a set window via the `rolling` function:
 
 ```python
-df_rolling_mean = df.rolling(?).mean()
+df_rolling_mean = df.rolling(7).mean()
 
 df_rolling_mean.tail()
 ```
@@ -245,23 +301,21 @@ df_rolling_mean.tail()
 <Screenshot
   alt="A screenshot showing rolling function in Jupyter Notebook"
   height={177}
-  src="/img/blog/2022-03-08/rolling.png"
+  src="/img/blog/2023-05-22/rolling.png"
   width={692}
 />
 
-## Visualizing the Data
+## Visualizing the data
 
 To visualize our crypto dataset, we’ll use the
 [seaborn](https://seaborn.pydata.org/) library built on top of
-[matplotlib](https://matplotlib.org/). First import both libraries, and let’s
-plot a simple graph of Solana’s opening price over time:
+[matplotlib](https://matplotlib.org/). First import both libraries and let’s
+plot a simple graph of Bitcoin's opening price over time:
 
 ```python
 import matplotlib.pyplot as plt
 import seaborn as sns
-```
 
-```python
 sns.set(rc={'figure.figsize':(11, 4)})
 
 df = df.set_index('Date')
@@ -271,43 +325,42 @@ df['Open'].plot(linewidth=0.5);
 <Screenshot
   alt="A screenshot showing price over time plot"
   height={281}
-  src="/img/blog/2022-03-08/price_over_time.png"
+  src="/img/blog/2023-05-22/price_over_time.png"
   width={692}
 />
 
-Note that seaborn chose some sane defaults for the x-axis. We can also specify
+Note that `seaborn` chose some sane defaults for the x-axis. We can also specify
 our own labels as well as legends like the plot below comparing the High, Low,
-and Opening prices of Solana over time:
+and Opening prices of Bitcoin over time:
 
 ```python
 cols_plot = ['High', 'Low', 'Open']
 axes = df[cols_plot].plot(marker='.', alpha=0.5, linestyle='None', figsize=(11, 9), subplots=True)
 for ax in axes:
-    ax.set_ylabel('Price ($)')
+   ax.set_ylabel('Price ($)')
 ```
 
 <Screenshot
   alt="A screenshot showing high, low and open price plots"
   height={423}
-  src="/img/blog/2022-03-08/high_low_open.png"
+  src="/img/blog/2023-05-22/high_low_open.png"
   width={692}
 />
 
 From a quick glance, it is hard to tell the trends of any of these price
-actions. Let’s dive into a time period when the Solana price starts to become
+actions. Let’s dive into a time period when the Bitcoin price starts to become
 more volatile (i.e. after Jan 2021). We can specify a subset of the dataset
-using the `loc` function and apply it to our full dataset, weekly mean resample,
-and seven day rolling mean.
+using the loc function and apply it to our full dataset, weekly mean resample,
+and seven-day rolling mean.
 
-After giving each of the dataset a different marker, we can plot all of them on
+After giving each of the datasets a different marker, we can plot all of them on
 the same graph to see when the opening price was above or below the weekly or
 moving window average:
 
 ```python
 fig, ax = plt.subplots()
-ax.plot(df.loc['2021-01-01 23:59:59': 'Open'], marker='.', linestyle='-', linewidth=0.5, label='Daily')
-ax.plot(df_weekly.loc['2021-01-01': 'Open'], marker='o', markersize=8, linestyle='-', label='Weekly Mean Resample')
-ax.plot(df_rolling_mean.loc['2021-01-01 23:59:59': 'Open'], marker='.', linestyle='-', label='7-d Rolling Mean')
+ax.plot(df.loc['2021-01-01 23:59:59':, 'Open'], marker='.', linestyle='-', linewidth=0.5, label='Daily')
+ax.plot(df_weekly.loc['2021-01-01':, 'Open'], marker='o', markersize=8, linestyle='-', label='Weekly Mean Resample')
 ax.set_ylabel('Price ($)')
 ax.legend();
 ```
@@ -315,25 +368,33 @@ ax.legend();
 <Screenshot
   alt="A screenshot showing moving window average plot"
   height={259}
-  src="/img/blog/2022-03-08/moving_window_average.png"
+  src="/img/blog/2023-05-22/moving_window_average.png"
   width={692}
 />
 
 We can zoom in further in the May to July timeframe to capture the volatility.
 Alternatively, we can also apply the popular 200-day moving average metric to
-analyze price trends. Finally, we can also use the `ewm` function in pandas to
-calculate an exponentially weighed moving average to gather different momentum
+analyze price trends. Finally, we can also use the `ewm` function in Pandas to
+calculate an exponentially weighted moving average to gather different momentum
 indicators. While past performance is not indicative of future performance,
 these momentum indicators can be used to backtest and formulate new trading or
 price analysis strategies.
 
 ## Conclusion
 
-With QuestDB and pandas, it’s easy to visualize and calculate various price and
-momentum indicators. By polling data from
-[CoinGecko](https://www.coingecko.com/) or
-[CoinMarketCap](https://coinmarketcap.com/), anyone can start analyzing crypto
-trends. If you are interested in more crypto analysis, make sure to check out:
+Pandas and QuestDB make for a powerful combination to perform complex data
+analysis. In this article, we walked through an example of analyzing historical
+crypto data with Pandas and QuestDB. We also discussed some options for
+importing and analyzing the data in Pandas or QuestDB based on data size,
+format, and team structure.
 
-- [Realtime Crypto Tracker with Kafka and QuestDB](https://medium.com/swlh/realtime-crypto-tracker-with-kafka-and-questdb-b33b19048fc2)
-- [Streaming Ethereum On-Chain Data to QuestDB](https://medium.com/geekculture/streaming-ethereum-on-chain-data-to-questdb-ea6b51d990ab)
+At the end of the day, the most ideal workflow will depend on the size of your
+data, the expertise of your team, or where responsibilities are divided amongst
+various teams. The good news is that all of these workflows can be mixed
+together as your data or team shifts over time.
+
+If you are interested in more financial tick analysis, make sure to check out:
+
+- [Ingesting Financial Tick Data Using a Time-Series Database](/blog/ingesting-financial-tick-data-using-time-series-database/)
+- [Realtime crypto tracker with QuestDB Kafka Connector](/blog/realtime-crypto-tracker-with-questdb-kafka-connector/)
+- [Streaming Ethereum On-Chain Data to QuestDB](/blog/2021/04/12/stream-ethereum-data/)
