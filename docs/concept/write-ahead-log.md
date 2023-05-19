@@ -31,7 +31,7 @@ The following keywords enable WAL tables:
 - Converting an existing table to a WAL table or vice versa via [`SET TYPE`](/docs/reference/sql/alter-table-set-type/) following a database restart.
 
 - Server-wide configuration via `cairo.wal.enabled.default`
-  - When `cairo.wal.enabled.default` is set to `true`, the
+  - When `cairo.wal.enabled.default` is set to `true` (default), the
     [`CREATE TABLE`](/docs/reference/sql/create-table/) SQL keyword generates
     WAL tables without `WAL`. The `BYPASS WAL` keyword still works as expected.
 
