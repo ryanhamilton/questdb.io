@@ -9,29 +9,25 @@ description:
 keywords:
   - concept1
   - concept2
-image: /img/blog/path/file.png
+image: /img/blog/path/banner.webp
 tags: [tutorial, tag1, tag2]
 slug: seo-friendly-url
 ---
 
-
-Brief introduction of
-[Author_Name](URL) and the topic of the article.
-
-<!--truncate-->
-
 import Banner from "@theme/Banner"
+
+<!--preview image should use the banner.webp filename-->
 
 <Banner
   alt="Title of the banner image"
   height={467}
-  src="/img/blog/path/file.png"
+  src="/img/blog/path/banner.webp"
   width={650}
 ></Banner>
 
 ## Title in sentence case
 
-![Image description](path/to/img.png)
+![Image description](path/to/img.webp)
 
 ## Title in sentence case
 ## Title in sentence case
