@@ -16,7 +16,7 @@ slug: seo-friendly-url
 
 import Banner from "@theme/Banner"
 
-<!--preview image should use the banner.webp filename-->
+<!--preview image should use the banner.webp filename to ensure that a thumbnail is created and presented properly-->
 
 <Banner
   alt="Title of the banner image"
