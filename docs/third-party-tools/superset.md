@@ -14,20 +14,45 @@ Superset with QuestDB.
 
 ## Requirements
 
-- Python from 3.8.x to 3.10.x
+- Python from 3.9 to 3.11
 - Psycopg2 for connectivity
 - SQLAlchemy for ORM and easy interaction
 - [Superset](https://superset.apache.org/docs/installation/installing-superset-from-scratch/)
   installation and initialization
 - QuestDB 7.1.2 or later
+- Docker
 
-## Installing QuestDB Connect
+## Installing Apache Superset
 
-Installing QuestDB Connect using pip:
+Follow these steps to install Apache Superset:
 
-```bash
-pip install questdb-connect
-```
+1. Clone the [Apache Superset repo](https://github.com/apache/superset/)
+2. Change your directory to `cd superset`
+3. Create a file `docker/requirements-local.txt` (within the clone) with the content:
+
+   ```txt
+   questdb-connect==1.0.6
+   ```
+   
+5. Edit file `pythonpath_dev/superset_config.py` to add your secret key at the top of the file after the imports:
+
+   ```txt
+   SECRET_KEY=<whatever text you want, or the text you used when you first run Apache Superset>
+   ```
+
+5. Pull the Apache Superset image:
+
+   ```bash
+   docker pull apache/superset:latest-dev
+   ```
+
+6. Run Apache Superset:
+
+   ```bash
+   docker-compose up
+   ```
+
+For more information, see [DEVELOPERS](https://github.com/questdb/questdb-connect/blob/main/DEVELOPERS.md).
 
 ## Connecting QuestDB
 
@@ -42,50 +67,9 @@ Select `+Database` to add the following parameters:
 - SQLALCHEMY URI: `questdb://admin:quest@host.docker.internal:8812/main`
 
 Once connected, tables in QuestDB will be visible for creating Datasets in
-Superset.
-
-## Additional steps for Mac M1 users
-
-Superset is not optimized for Apple M1 chip. As a result, the following steps
-are required for Mac M1 users:
-
-1. Clone the [Superset repo](https://github.com/apache/superset)
-2. Amend the following files
-   - Replace the `Dockerfile` with the
-     [Dockerfile](https://github.com/questdb/questdb-connect/blob/main/superset_toolkit/Dockerfile)
-     provided by the QuestDB Connect. This specifies the `arm64` option and uses `16.20-bullseye`.
-   - Replace the `docker-compose.yaml` with the
-     [docker-compose.yml](https://github.com/questdb/questdb-connect/blob/main/superset_toolkit/docker-compose.yml)
-     provided by the QuestDB Connect. This uses the `16.20-bullseye`.
-3. Create a file `docker/requirements-local.txt` with the content:
-
-   ```txt
-   questdb-connect==0.0.42
-   ```
-
-   The is the QuestDB Connect version. Check `pypi` for the latest release
-   version number.
-
-4. Build the image:
-
-   ```bash
-   docker build -t apache/superset:latest-dev .
-   ```
-
-5. Run Apache Superset:
-
-   ```bash
-   docker-compose up
-   ```
-
-   For more information, see
-   [DEVELOPERS](https://github.com/questdb/questdb-connect/blob/main/DEVELOPERS.md)
-   in the QuestDB Connect GitHub repo.
+Apache Superset.
 
 ## See also
 
-- The [QuestDB Connect](https://github.com/questdb/questdb-connect) GitHub repo
-- The
-  [superset_toolkit](https://github.com/questdb/questdb-connect/tree/main/superset_toolkit)
-  directory with replacement M1 files for the Superset repository
+- [QuestDB Connect GitHub repo](https://github.com/questdb/questdb-connect/)
 - [QuestDB Connect Python module](https://pypi.org/project/questdb-connect/)
