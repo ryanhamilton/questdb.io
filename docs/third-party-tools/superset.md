@@ -84,8 +84,6 @@ are required for Mac M1 users:
 
 ## See also
 
-- The [QuestDB Connect](https://github.com/questdb/questdb-connect) GitHub repo
-- The
-  [superset_toolkit](https://github.com/questdb/questdb-connect/tree/main/superset_toolkit)
-  directory with replacement M1 files for the Superset repository
+- [QuestDB Connect at GitHub](https://github.com/questdb/questdb-connect/)
 - [QuestDB Connect Python module](https://pypi.org/project/questdb-connect/)
+- [Apache Superset install](https://superset.apache.org/docs/installation/installing-superset-from-scratch/)
