@@ -98,10 +98,10 @@ const config = {
       respectPrefersColorScheme: true,
     },
     image: "/img/og.gif",
-    gtag: {
-      trackingID: "GTM-PVR7M2G",
-      anonymizeIP: true,
-    },
+    // gtag: {
+    //   trackingID: "GTM-PVR7M2G",
+    //   anonymizeIP: true,
+    // },
     prism: {
       defaultLanguage: "questdb-sql",
       additionalLanguages: [
