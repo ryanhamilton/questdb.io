@@ -120,8 +120,8 @@ const svgs = [
   },
 ]
 
-export const Logos = ({ isDarkTheme }) => (
-  <>
+export const Logos = ({ isDarkTheme, onClick }) => (
+  <div className={styles.logos} onClick={onClick}>
     {svgs.map(({ svg, width, height, alt, offset }, i) => (
       <div
         key={i}
@@ -139,5 +139,5 @@ export const Logos = ({ isDarkTheme }) => (
         />
       </div>
     ))}
-  </>
+  </div>
 )
