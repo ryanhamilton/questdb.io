@@ -1,9 +1,9 @@
 ---
-title: Time-Series Database
+title: What Is a Time-Series Database?
 wrapperClassName: career
 ---
 
-# What is a time-series database?
+# What Is a Time-Series Database?
 
 A time-series database (TSDB) is a database designed to efficiently store and
 process time-series data.
