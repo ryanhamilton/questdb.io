@@ -302,17 +302,36 @@ per partition. In edge cases with extremely large tables, frequent out-of-order
 ingestion, or high number of table partitions, the number of open files may hit
 a user or system-wide maximum limit and can cause unpredictable behavior.
 
-The following commands allow for checking current user and system limits for
-maximum number of open files:
+In a Linux/macOS environment the following commands allow for checking current
+user limits for maximum number of open files:
 
-```bash title="checking ulimit"
+```bash
 # Soft limit
 ulimit -Sn
 # Hard limit
 ulimit -Hn
 ```
 
-**Setting system-wide open file limit:**
+**Setting open file limit for current user:**
+
+On Linux environments it is enough to increase the hard limit, while on macOS
+both limits should be set. See
+[Max Open Files Limit on MacOS for the JVM](/blog/max-open-file-limit-macos-jvm/)
+for more details.
+
+Modify user limits using ulimit:
+```bash
+# Hard limit
+ulimit -H -n 49152
+# Soft limit
+ulimit -S -n 49152
+```
+
+If the limit has to be increased above the system-wide limit, the system-wide
+limit should be changed too. That is because the lowest setting is the absolute
+limit for the application, let it be the user or the system-wide limit.
+
+**Setting system-wide open file limit on Linux:**
 
 To increase this setting and have the configuration persistent, the limit on the
 number of concurrently open files can be changed in `/etc/sysctl.conf`:
@@ -329,6 +348,18 @@ check the current value:
 sysctl -p
 # query current settings
 sysctl fs.file-max
+```
+
+**Setting system-wide open file limit on macOS:**
+
+On macOS system-wide limits can be modified using `launchctl`:
+```shell
+sudo launchctl limit maxfiles 98304 2147483647
+```
+
+To confirm the change view current settings using `sysctl`:
+```shell
+sysctl -a | grep kern.maxf
 ```
 
 ### Max virtual memory areas limit
