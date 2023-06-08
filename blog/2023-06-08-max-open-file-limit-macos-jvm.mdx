@@ -200,7 +200,7 @@ around 4000.
 `4 * 950 + 200 = 4000`, the closest value is the previously set soft limit,
 which is 4096.
 
-I increased the soft limit and change the hard limit to `Integer.MAX` (basically
+I increased the soft limit and changed the hard limit to `Integer.MAX` (basically
 unlimited).
 
 ```shell
@@ -247,9 +247,9 @@ it would probably make sense to change the soft limit to the hard limit.
 This would be backward compatible, too. Currently, for QuestDB on macOS, we have
 the 10240 as an absolute limit unless someone has set a hard limit lower than
 that (e.g., `ulimit -H -n 8192`). After removing the 10240 limit, QuestDB will
-switch to the soft limit, so the existing hard limit should also be set as the
+switch to the soft limit, so the existing hard limit should also be set as
 soft limit. Otherwise, suddenly we could start using a much lower value, as
-defined by the soft limit (which is 256!).
+defined by the soft limit. The default could be as low as 256!
 
 ## Conclusion
 
