@@ -1,0 +1,67 @@
+---
+title: QuestDB 7.2, Upcoming Features, BEAM Summit, and Berlin Buzzwords
+author: QuestDB
+author_url: https://github.com/questdb
+author_image_url: https://avatars.githubusercontent.com/u/52297642?s=200&v=4
+description:
+  "We take you through QuestDB's latest release, upcoming features for QuestDB Cloud and Enterprise, as well as our
+  up-coming events"
+tags: [newsletter, release, community]
+image: /img/blog/newsletter-preview.webp
+slug: newsletter-questdb7.2-upcoming-features-beam-summit-berline-buzzwords
+---
+
+![QuestDB newsletter banner](/img/blog/newsletter.webp)
+
+We release QuestDB 7.2! Find out more about new and upcoming features. Javier
+will speak at the BEAM summit, and the QuestDB team will attend Berlin
+Buzzwords.
+
+## QuestDB 7.2
+
+We introduce partition split to reduce the surface area for copy-on-write
+operations. This minimizes write amplification and improves performance by
+orders of magnitude during heavy out-of-order data ingest scenarios. Read the
+[release notes](https://github.com/questdb/questdb/releases/tag/7.2) to find out
+more.
+
+## 🆕 New features
+
+- [Superset](/blog/time-series-data-visualization-apache-superset-and-questdb/)
+  integration is available.
+- New [CSV upload UI](/docs/develop/web-console/#import)
+
+![Screenshot of the CSV import UI](/img/blog/2023-06-13/csv-import.webp)
+
+- Durability: A new f-sync mode for less predictable on-prem deployments. This
+  ensures that committed transactions and data changes are not lost or corrupted
+  during a crash or power loss. The impact on performance is roughly 2x slower
+  ingests.
+
+## 👀 Coming very soon for Cloud and Enterprise
+
+- Data Compression will soon be available for QuestDB Cloud! Expect 3x less
+  space on disk (more than 10x for nulls).
+
+![Screenshot of the Cloud UI](/img/blog/2023-06-13/compression.webp)
+
+- Role-Based Access Control with user/role management, table/column-level
+  permissions, In-database access key management, and OAuth.
+
+## 🙌 Community
+
+- Javier will speak at the BEAM Summit in New York on June 14, 12:00-12:25 EDT.
+
+![BEAM Summit poster](/img/blog/2023-06-13/beam.webp)
+
+- The QuestDB team will be present at Berlin Buzzwords, June 18-20.
+
+![Berlin Buzzwords banner](/img/blog/2023-06-13/berlin-buzzwords.webp)
+
+- Check out our video from
+  [J on the Beach](https://www.youtube.com/watch?v=PRb0xLW6g0o&t=3s) about the
+  design decisions and trade-offs we made to build QuestDB.
+
+We hope you enjoy reading our latest issue so far. If you'd like to provide your
+input on our newsletter or product, please reach out to our team members on the
+[QuestDB Community Slack](http://slack.questdb.io/). Thank you!
