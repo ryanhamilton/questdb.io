@@ -9,18 +9,18 @@ wrapperClassName: career
 A time-series database (TSDB) is a database designed to efficiently store and
 process time-series data.
 
-Time series data is a set of data points associated with a timestamp, typically
+Time-series data is a set of data points associated with a timestamp, typically
 collected and recorded in chronological order. Examples include financial market
 data, sensor readings, and application or infrastructure metrics.
 
-Due to the continuous nature of time series data, traditional relational
+Due to the continuous nature of time-series data, traditional relational
 databases are not optimized to store and query them. On the other hand,
 time-series databases are purpose-built to handle the unique characteristics of
 time-series data, allowing for fast ingestion and analysis.
 
-## What makes time series data different?
+## What makes time-series data different?
 
-Time series data is different from other types of data due to its temporal
+Time-series data is different from other types of data due to its temporal
 nature. It is marked by the following characteristics:
 
 - The order of the data is important. It captures temporal information such as
@@ -31,7 +31,7 @@ nature. It is marked by the following characteristics:
 - The relevance of each data point diminishes over time.
 - The data is often downsampled or aggregated over different time intervals.
 
-Analyzing time series data involves identifying trends over time to create
+Analyzing time-series data involves identifying trends over time to create
 forecasting models or detect anomalies. An example query might look at a weekly
 average sensor reading over the last six months or track the maximum price of a
 stock per hour over a week. Traditional databases often struggle with these
