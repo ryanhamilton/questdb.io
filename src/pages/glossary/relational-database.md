@@ -16,11 +16,11 @@ to each column. Data is then retrieved via Structured Query Language (SQL),
 which is why relational databases are often called SQL databases.
 
 <Screenshot
-  alt="Diagram showing an example of a relational database with data in the Transaction table is stored in the Product and Customer table"
+  alt="Diagram showing an example of a relational database with data in the Transaction table mapped to the Product table and the Customer table."
   height={342}
   src="/img/glossary/relational-database/relational-database.webp"
   width={770}
-  title="Example of a relational database: the data in the Transaction table is mapped to the Product table and the Customer table"
+  title="Example of a relational database: the data in the Transaction table is mapped to the Product table and the Customer table."
 />
 
 Relational databases are commonly used for scenarios where data can be logically
