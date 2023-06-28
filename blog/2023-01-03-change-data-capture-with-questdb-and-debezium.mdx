@@ -481,13 +481,14 @@ demonstrated by the candle chart.
 ## Next steps
 
 This sample project is a foundational reference architecture to stream data from
-a relational database into an optimized time series database. For existing
-projects that are using PostgreSQL, Debezium can be configured to start
-streaming data to QuestDB and take advantage of time series queries and
-partitioning. For databases that are also storing raw historical data, adopting
-Debezium may need some architectural changes. However, this is beneficial as it
-is an opportunity to improve performance and establish service boundaries
-between a transactional database and an analytical, time-series database.
+a [relational database](/glossary/relational-database/) into an optimized time
+series database. For existing projects that are using PostgreSQL, Debezium can
+be configured to start streaming data to QuestDB and take advantage of time
+series queries and partitioning. For databases that are also storing raw
+historical data, adopting Debezium may need some architectural changes. However,
+this is beneficial as it is an opportunity to improve performance and establish
+service boundaries between a transactional database and an analytical,
+time-series database.
 
 This reference architecture can also be extended to configure Kafka Connect to
 also stream to other data warehouses for long-term storage. After inspecting the
