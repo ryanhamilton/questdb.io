@@ -98,7 +98,7 @@ The table below compares the traits of relational and non-relational databases:
 |                  | Relational Databases              | Non-relational Databases                                    |
 | ---------------- | --------------------------------- | ----------------------------------------------------------- |
 | Data Model       | Relational                        | Key-value, document, graph, search, time-series             |
-| Query Language   | SQL                               | Varies                                                      |
+| Query Language   | SQL                               | Varies, including SQL                                       |
 | Use Cases        | Structured data, complex querying | Unstructured or semi-structured data, high write-throughput |
 | Data Consistency | Strong consistency (ACID)         | Eventual consistency                                        |
 | Examples         | MySQL, PostgreSQL, SQL Server     | MongoDB, Cassandra, Redis, DynamoDB                         |
