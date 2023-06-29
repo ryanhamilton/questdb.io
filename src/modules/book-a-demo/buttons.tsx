@@ -10,7 +10,7 @@ type Props = {
   className?: string
 }
 
-export const BookADemoButtons = ({ className }: Props) => (
+export const BookADemo = ({ className }: Props) => (
   <div className={clsx(styles.root, className)}>
     <Button
       size="xxsmall"

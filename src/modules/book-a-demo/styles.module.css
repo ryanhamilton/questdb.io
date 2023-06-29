@@ -8,3 +8,13 @@
 :global(html[data-theme="light"]) .root svg {
   filter: invert(1);
 }
+
+.calendly {
+  height: 49.3rem;
+}
+
+@media screen and (max-width: 1074px) {
+  .calendly {
+    height: 75.3rem;
+  }
+}
