@@ -353,7 +353,8 @@ Capture via Debezium?</summary>
 
 
 QuestDB works with Debezium just great! This is the recommended pattern:
-Transactional applications use a relational database to store the current state
+Transactional applications use a
+[relational database](/glossary/relational-database/) to store the current state
 of the data. QuestDB is used to store the history of changes. Example: Imagine
 you have a PostgreSQL table with the most recent stock prices. Whenever a stock
 price changes, an application updates the PostgreSQL table. Debezium captures
