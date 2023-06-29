@@ -4,10 +4,11 @@ sidebar_label: JOIN
 description: JOIN SQL keyword reference documentation.
 ---
 
-QuestDB supports the type of joins you can frequently find in relational
-databases: `INNER`, `LEFT (OUTER)`, `CROSS`. Additionally, it implements joins
-which are particularly useful for time-series analytics: `ASOF`, `LT`, and
-`SPLICE`. `FULL` joins are not yet implemented and are on our roadmap.
+QuestDB supports the type of joins you can frequently find in
+[relational databases](/glossary/relational-database/): `INNER`, `LEFT (OUTER)`,
+`CROSS`. Additionally, it implements joins which are particularly useful for
+time-series analytics: `ASOF`, `LT`, and `SPLICE`. `FULL` joins are not yet
+implemented and are on our roadmap.
 
 All supported join types can be combined in a single SQL statement; QuestDB
 SQL's optimizer determines the best execution order and algorithms.
