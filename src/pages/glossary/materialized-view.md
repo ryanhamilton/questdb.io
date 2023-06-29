@@ -70,7 +70,7 @@ the query is not accessed frequently, the storage-to-performance tradeoff may
 not be favorable. Lastly, materialized views are read-only, so it is not
 recommended when the results may need some modifications.
 
-## Database that supports materialized views
+## Databases that support materialized views
 
 - [Oracle](https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/CREATE-MATERIALIZED-VIEW.html)
 - [PostgreSQL](https://www.postgresql.org/docs/current/rules-materializedviews.html)
