@@ -21,7 +21,13 @@ const currentOpenings: Opening[] = [
     title: "Technical Content Lead",
     location: "Remote",
   },
-
+  
+  {
+    href: "/careers/technical-writer/",
+    title: "Technical Writer",
+    location: "Remote",
+  },
+  
   {
     href: "/careers/senior-backend-engineer/",
     title: "Senior Backend Engineer",
