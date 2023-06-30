@@ -1,7 +1,10 @@
 import React from "react"
 import { Section } from "../../../components/Section"
-import localStyle from "./styles.module.css"
-import { StartBuilding } from "./start-building"
+import styles from "./styles.module.css"
+import { useCloudUrl } from "../../../utils/cloud-url"
+import { BookADemo } from "../../book-a-demo/buttons"
+import clsx from "clsx"
+import Button from "@theme/Button"
 
 const featureList = [
   "Database-as-a-service",
@@ -10,32 +13,64 @@ const featureList = [
   "High availability",
   "Multiple regions",
   "Additional database features",
+  "Out-of-the-box compression",
 ]
 
 export const Top = () => {
+  const cloudUrl = useCloudUrl()
   return (
-    <Section className={localStyle.section}>
-      <div className={localStyle.columns}>
-        <div className={localStyle.textColumn}>
-          <Section.Title level={1}>QuestDB Cloud</Section.Title>
+    <Section className={styles.columns}>
+      <div className={styles.textColumn}>
+        <Section.Title level={1}>QuestDB Cloud</Section.Title>
 
-          <Section.Subtitle>
-            The fastest open source time series database fully managed on the
-            cloud.
-          </Section.Subtitle>
+        <Section.Subtitle>
+          The fastest open source time-series database fully managed on the
+          cloud.
+        </Section.Subtitle>
 
-          <ul className={localStyle.list}>
-            {featureList.map((feature) => (
-              <li className={localStyle.bullet} key={feature}>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className={styles.list}>
+          {featureList.map((feature) => (
+            <li className={styles.bullet} key={feature}>
+              <span>{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
 
-        <Section noGap center>
-          <StartBuilding />
-        </Section>
+      <div className={styles.startBuildingRoot}>
+        <img
+          src="/img/pages/cloud/cloud-cpu.png"
+          width={478}
+          height={176}
+          alt="An image showing QuestDB Cloud instance details"
+          className={clsx(
+            styles.startBuildingImage,
+            styles.instanceDetailsImage,
+          )}
+        />
+        <img
+          src="/img/pages/cloud/cloud-metrics.png"
+          width={478}
+          height={124}
+          alt="An image showing CPU usage graph from QuestDB Cloud instance"
+          className={clsx(
+            styles.startBuildingImage,
+            styles.instanceMetricsImage,
+          )}
+        />
+        <Button
+          variant="primary"
+          className={styles.startBuildingButton}
+          to={cloudUrl}
+          newTab={false}
+        >
+          Start building now
+        </Button>
+        <BookADemo className={styles.actions} />
+
+        <span className={styles.startBuildingCredits}>
+          $200 in free credits
+        </span>
       </div>
     </Section>
   )

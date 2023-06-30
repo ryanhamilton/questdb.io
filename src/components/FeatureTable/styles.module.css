@@ -87,14 +87,18 @@ html[data-theme="light"] .root {
 
 .availableNewLabel {
   position: absolute;
-  background: var(--palette-green);
-  top: -50%;
-  right: -30%;
-  transform: rotateZ(22deg);
+  background: #409143;
+  top: -60%;
+  right: -60%;
+  transform: rotateZ(19deg);
   padding: 0 0.3rem;
   font-size: 0.8rem;
   border-radius: 6px;
-  opacity: 0.9;
+}
+
+html[data-theme="light"] .availableNewLabel {
+  background: #73d577;
+  color: #333;
 }
 
 .icon {

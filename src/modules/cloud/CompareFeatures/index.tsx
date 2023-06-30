@@ -31,6 +31,10 @@ const coreFeaturesRows: Row[] = [
     values: ["available", "available"],
   },
   {
+    title: "Data compression",
+    values: ["unavailable", "available-new"],
+  },
+  {
     title: "High-performance data migration",
     values: ["available", "available"],
   },
@@ -48,10 +52,6 @@ const coreFeaturesRows: Row[] = [
   },
   {
     title: "Cold storage support",
-    values: ["unavailable", "coming-soon"],
-  },
-  {
-    title: "Data compression",
     values: ["unavailable", "coming-soon"],
   },
 ]

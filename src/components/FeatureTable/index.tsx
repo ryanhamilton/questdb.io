@@ -12,32 +12,24 @@ type Status =
   | "coming-soon"
   | "contact-us"
 
-const Availability = ({ status }: { status: Status | string }) => {
-  switch (status) {
-    case "available":
-      return <span className={clsx(style.icon, style.iconCheck)} />
-    case "available-new":
-      return (
-        <span className={style.availableNew}>
-          <span className={clsx(style.icon, style.iconCheck)} />
-          <span className={style.availableNewLabel}>New!</span>
-        </span>
-      )
-    case "unavailable":
-      return <span className={clsx(style.icon, style.iconClose)} />
-    case "not-applicable":
-      return <span>-</span>
-    case "coming-soon":
-      return <span className={style.statusText}>Coming soon</span>
-    case "contact-us":
-      return (
-        <Link to="/enterprise/contact" className={style.link}>
-          Contact us
-        </Link>
-      )
-    default:
-      return <span className={style.statusText}>{status}</span>
-  }
+const statusMap: { [key in Status]: JSX.Element } = {
+  available: <span className={clsx(style.icon, style.iconCheck)} />,
+
+  "available-new": (
+    <span className={style.availableNew}>
+      <span className={clsx(style.icon, style.iconCheck)} />
+      <span className={style.availableNewLabel}>New!</span>
+    </span>
+  ),
+
+  unavailable: <span className={clsx(style.icon, style.iconClose)} />,
+  "not-applicable": <span>-</span>,
+  "coming-soon": <span className={style.statusText}>Coming soon</span>,
+  "contact-us": (
+    <Link to="/enterprise/contact" className={style.link}>
+      Contact us
+    </Link>
+  ),
 }
 
 type Props = {
@@ -108,7 +100,11 @@ export const FeatureTable = ({ rows, cols, title, firstColWidth }: Props) => {
                     key={`${rowIndex}-${colIndex}`}
                     style={{ minWidth: col.width }}
                   >
-                    <Availability status={row.values[colIndex]} />
+                    {statusMap[row.values[colIndex]] ?? (
+                      <span className={style.statusText}>
+                        {row.values[colIndex]}
+                      </span>
+                    )}
                   </td>
                 ))}
               </tr>
