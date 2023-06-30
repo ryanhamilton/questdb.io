@@ -5,16 +5,17 @@ description: Guide for using SQLAlchemy with QuestDB
 
 [SQLAlchemy](https://www.sqlalchemy.org/) is an open-source SQL toolkit and ORM
 library for Python. It provides a high-level API for communicating with
-relational databases, including schema creation and modification, an SQL
-expression language, and database connection management. The ORM layer abstracts
-away the complexities of the database, allowing developers to work with Python
-objects instead of raw SQL statements.
+[relational databases](/glossary/relational-database/), including schema
+creation and modification, an SQL expression language, and database connection
+management. The ORM layer abstracts away the complexities of the database,
+allowing developers to work with Python objects instead of raw SQL statements.
 
 QuestDB implements a dialect for SQLAlchemy using the
 [QuestDB Connect](https://github.com/questdb/questdb-connect) Python package.
 
- Please note that the SQLAlchemy ORM and metadata operations are only partially supported.
- 
+Please note that the SQLAlchemy ORM and metadata operations are only partially
+supported.
+
 ## Prerequisites
 
 - Python from 3.9 to 3.11

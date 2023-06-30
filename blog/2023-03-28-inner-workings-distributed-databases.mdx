@@ -6,13 +6,7 @@ author_url: https://github.com/ideoma
 author_image_url: https://avatars.githubusercontent.com/ideoma
 description: Comparison of replication options of time-series databases.
 image: /img/blog/2023-03-28/database-replication.webp
-tags:
-  [
-    engineering,
-    comparison,
-    distributed system,
-    high availability,
-  ]
+tags: [engineering, comparison, distributed system, high availability]
 slug: inner-workings-distributed-databases
 ---
 
@@ -24,13 +18,13 @@ import Banner from "@theme/Banner"
   width={530}
 ></Banner>
 
-> This post examines the various replication strategies
-used by popular time-series and OLAP databases to implement high-availability.
-Our learnings from this research have inspired us as we continue to build replication
-into our own performance-focused database, [QuestDB](https://github.com/questdb/questdb).
-The database is built in C++, low latency Java, and recently Rust! The codebase
-has no external dependencies and we implement SQL with native time-series
-extensions.
+> This post examines the various replication strategies used by popular
+> time-series and OLAP databases to implement high-availability. Our learnings
+> from this research have inspired us as we continue to build replication into
+> our own performance-focused database,
+> [QuestDB](https://github.com/questdb/questdb). The database is built in C++,
+> low latency Java, and recently Rust! The codebase has no external dependencies
+> and we implement SQL with native time-series extensions.
 
 After being unable to ride my new electric bike to work yet again because it was
 in the shop (this time because of a wiring problem that prevented the bike from
@@ -192,11 +186,11 @@ databases handles the write failover and here are some of the results.
 
 ## TimescaleDB
 
-Everyone loves classic relational databases, and nearly every developer is
-prepared to answer interview questions about ACID properties and sometimes even
-about Transaction Isolation levels of different RDMS systems (and what can go
-wrong with each of them!). Building distributed Read / Write applications using
-a RDBMS is not easy but it is definitely doable.
+Everyone loves classic [relational databases](/glossary/relational-database/),
+and nearly every developer is prepared to answer interview questions about ACID
+properties and sometimes even about Transaction Isolation levels of different
+RDMS systems (and what can go wrong with each of them!). Building distributed
+Read / Write applications using a RDBMS is not easy but it is definitely doable.
 
 PostgreSQL is one of the leading open source RDBMSes, and many say that it's
 more than just a database. Postgres is also an extensible platform where you

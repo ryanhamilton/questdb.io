@@ -38,9 +38,9 @@ Javier to tell us more about the experience.
 ### What was the crowd like?
 
 A good mix of data engineers, data analysts, decision makers, data vendors, and
-some students. There were some well-known developer tools and databases, such
-as Confluent (Kafka), OLAP database ClickHouse, InfluxData (the parent company of InfluxDB),
-MongoDB, and Fivetran, to name a few.
+some students. There were some well-known developer tools and databases, such as
+Confluent (Kafka), OLAP database ClickHouse, InfluxData (the parent company of
+InfluxDB), MongoDB, and Fivetran, to name a few.
 
 ### Who did you meet?
 
@@ -50,9 +50,9 @@ solutions, and we found some time to talk to other vendors, explore
 collaborations, or simply have a friendly talk about QuestDB's data analytics
 capacities. Users were from many different backgrounds: companies managing
 wireless networks producing thousands of events per millisecond, hedge funds
-overseeing a wide variety of assets, and cryptocurrency exchanges. We even
-had a great time speaking with a F1 team looking for a time series database. We
-hope to see them all soon in our community slack channel!
+overseeing a wide variety of assets, and cryptocurrency exchanges. We even had a
+great time speaking with a F1 team looking for a time series database. We hope
+to see them all soon in our community slack channel!
 
 ### What did you talk about?
 
@@ -81,9 +81,9 @@ there.
 ### Did you receive any interesting questions about your presentation?
 
 We received some questions about horizontal scalability (coming soon), and about
-how much work it was to move from thinking in a relational database model to a
-time series one, which in QuestDB's case should be an easy switch thanks to our
-SQL layer.
+how much work it was to move from thinking in a
+[relational database](/glossary/relational-database/) model to a time series
+one, which in QuestDB's case should be an easy switch thanks to our SQL layer.
 
 ### Were you nervous?
 

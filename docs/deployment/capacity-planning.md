@@ -57,7 +57,8 @@ QuestDB database.
 
 ### Write amplification
 
-In QuestDB the write amplification is calculated by the [metrics](/docs/third-party-tools/prometheus/#scraping-prometheus-metrics-from-questdb):
+In QuestDB the write amplification is calculated by the
+[metrics](/docs/third-party-tools/prometheus/#scraping-prometheus-metrics-from-questdb):
 `questdb_physically_written_rows_total` / `questdb_committed_rows_total`.
 
 When ingesting out-of-order data, a high disk write rate combined with high
@@ -88,7 +89,9 @@ into 2 parts:
 - Prefix: `2023-01-01.1` with 23,000 rows
 - Suffix (including the merged row):`2023-01-01T75959-999999.2` with 1,001 rows
 
-See [Splitting and squashing time partitions](/docs/concept/partitions/#splitting-and-squashing-time-partitions) for more information.
+See
+[Splitting and squashing time partitions](/docs/concept/partitions/#splitting-and-squashing-time-partitions)
+for more information.
 
 ## CPU and RAM configuration
 
@@ -310,14 +313,15 @@ done in response to such OS errors.
 
 ### Maximum open files
 
-The storage model of QuestDB has the benefit that most data structures relate
-closely to the file system, with columnar data being stored in its own `.d` file
-per partition. In edge cases with extremely large tables, frequent out-of-order
-ingestion, or a high number of table partitions, the number of open files may hit
-a user or system-wide maximum limit and can cause unpredictable behavior.
+QuestDB uses a [columnar](/glossary/columnar-database/) storage model and
+therefore most data structures relate closely to the file system, with columnar
+data being stored in its own `.d` file per partition. In edge cases with
+extremely large tables, frequent out-of-order ingestion, or a high number of
+table partitions, the number of open files may hit a user or system-wide maximum
+limit and can cause unpredictable behavior.
 
-In a Linux/macOS environment, the following commands allow for checking the current
-user limits for the maximum number of open files:
+In a Linux/macOS environment, the following commands allow for checking the
+current user limits for the maximum number of open files:
 
 ```bash
 # Soft limit
@@ -334,6 +338,7 @@ both hard and soft limits should be set. See
 for more details.
 
 Modify user limits using `ulimit`:
+
 ```bash
 # Hard limit
 ulimit -H -n 49152
@@ -343,7 +348,6 @@ ulimit -S -n 49152
 
 If the user limit is set above the system-wide limit, the system-wide limit
 should be increased to the same value, too.
-
 
 #### Setting the system-wide open file limit on Linux:
 
@@ -373,6 +377,7 @@ sudo launchctl limit maxfiles 98304 2147483647
 ```
 
 To confirm the change, view the current settings using `sysctl`:
+
 ```shell
 sysctl -a | grep kern.maxf
 ```

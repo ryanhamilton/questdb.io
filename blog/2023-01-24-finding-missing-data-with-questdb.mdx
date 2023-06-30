@@ -47,15 +47,16 @@ you're talking about time-series data. By definition, time-series data needs to
 be continuous. However, the granularity of the continuum might differ for
 different requirements.
 
-When you have to test your data for completeness in a relational database, you
-often have to write complex SQL queries paired with intermediate or temporary
-tables to find missing data. In some cases, these queries can be tedious and
-non-performant. QuestDB is a time-series database that lets you store and
-consume your data in tabular form, but it's not what you would call a
-traditional relational database. To cater to the time-series workloads, QuestDB
-extends the standard SQL functionalities using SQL extensions. One of these
-extensions is the [`SAMPLE BY`](/docs/reference/sql/sample-by/) extension, which
-allows you to find and deal with missing data with ease.
+When you have to test your data for completeness in a
+[relational database](/glossary/relational-database/), you often have to write
+complex SQL queries paired with intermediate or temporary tables to find missing
+data. In some cases, these queries can be tedious and non-performant. QuestDB is
+a time-series database that lets you store and consume your data in tabular
+form, but it's not what you would call a traditional relational database. To
+cater to the time-series workloads, QuestDB extends the standard SQL
+functionalities using SQL extensions. One of these extensions is the
+[`SAMPLE BY`](/docs/reference/sql/sample-by/) extension, which allows you to
+find and deal with missing data with ease.
 
 This tutorial will take you through how to use
 [QuestDB's SQL extensions](/blog/2022/11/23/sql-extensions-time-series-data-questdb-part-ii/)

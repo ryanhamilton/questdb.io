@@ -140,9 +140,10 @@ To understand how InfluxDB works, we need to grasp the following key concepts:
 - **Data storage (TSM & TSI):** data points are stored in time-structured merge
   tree (TSM), and time series index (TSI) files. TSM can be thought of a
   [LSM tree with write-ahead log (WAL) and read-only files similar to SSTables](https://docs.influxdata.com/influxdb/v2.6/reference/internals/storage-engine)
-  that are sorted and compressed. In the event of high cardinality (i.e., large
-  number of elements in a set), performance can decrease. The proprietary
-  InfluxDB Cloud (IOx) claims high cardinality is not an issue anymore.
+  that are sorted and compressed. In the event of
+  [high cardinality](/glossary/high-cardinality/) (i.e., large number of
+  elements in a set), performance can decrease. The proprietary InfluxDB Cloud
+  (IOx) claims high cardinality is not an issue anymore.
 
 - **Query languages:** InfluxDB originally supported only InfluxQL, an SQL-like
   language, but in 2018
@@ -231,14 +232,15 @@ and characterized by high cardinality:
 - **Continuous Aggregation:** TimescaleDB also supports
   [continuous aggregation of data](https://docs.timescale.com/timescaledb/latest/overview/core-concepts/continuous-aggregates/)
   to make computing key metrics like hourly average, minimum, and maximum values
-  fast. Behind the scenes, the data is stored using PostgreSQL materialized
-  views; additional storage is needed as a trade-off for faster queries. For
-  time-based aggregations (e.g., average temperature between 3 pm and 4 pm vs.
-  the exact temperature at 3 pm), scanning fewer data for each aggregation can
-  help performance-wise.
+  fast. Behind the scenes, the data is stored using PostgreSQL
+  [materialized views](/glossary/materialized-view/); additional storage is
+  needed as a trade-off for faster queries. For time-based aggregations (e.g.,
+  average temperature between 3 pm and 4 pm vs. the exact temperature at 3 pm),
+  scanning fewer data for each aggregation can help performance-wise.
 
 - **Data Retention:** Large deletes are a costly operation in traditional
-  relational databases. However, since TimescaleDB stores data in chunks, it
+  [relational databases](/glossary/relational-database/). However, since
+  TimescaleDB stores data in chunks, it
   [provides a `drop_chunks` feature](https://docs.timescale.com/timescaledb/latest/overview/core-concepts/data-retention/#data-retention)
   to quickly drop old data without the same overhead. Since the relevance of old
   data diminishes over time, TimescaleDB can be used to move older data to save
