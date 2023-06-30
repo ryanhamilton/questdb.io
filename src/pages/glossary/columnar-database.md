@@ -82,6 +82,5 @@ HBase with Hadoop).
 
 - [Apache Cassandra](https://cassandra.apache.org/_/index.html)
 - [Apache HBase](https://hbase.apache.org)
-- [Apache Druid](https://druid.apache.org/)
 - [Amazon Redshift](https://aws.amazon.com/redshift/)
 - [Google BigQuery](https://cloud.google.com/bigquery/)
