@@ -3,23 +3,37 @@ title: Run QuestDB on Kubernetes
 sidebar_label: Kubernetes
 description:
   This document describes how to deploy QuestDB using a Kubernetes cluster by
-  means of official Helm charts maintained by the QuestDB project
+  means of an official Helm chart or an Operator, both maintained by the QuestDB project
 ---
 
-You can deploy QuestDB in a [Kubernetes](https://kubernetes.io) cluster using a
+You can deploy QuestDB in a [Kubernetes](https://kubernetes.io) cluster using either of 2 supported methods:
+1. A [Helm](https://helm.sh) Chart that orchestrates core resources, including a
 [StatefulSet](https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/)
 and a
-[persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
-We distribute QuestDB via [Helm](https://helm.sh) on
-[ArtifactHub](https://artifacthub.io/packages/helm/questdb/questdb).
+[persistent volume](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).  The Chart is distributed on [ArtifactHub](https://artifacthub.io/packages/helm/questdb/questdb).
+2. A Kubernetes [Operator](https://github.com/questdb/questdb-operator/) that orchestrates the same core resources, but also includes support for taking [Volume Snapshots](https://kubernetes.io/docs/concepts/storage/volume-snapshots/) on a regular basis.
 
-## Prerequisites
+## Feature Matrix
+
+||Helm Chart|Operator|
+|-|-|-|
+|StatefulSet|x|x|
+|Persistent Volume|x|x|
+|Service|x|x|
+|Ingress|x|x|
+|Native Secret Handling||x|
+|Snapshots||x|
+|Snapshot Schedules||x|
+
+## Helm
+
+### Prerequisites
 
 - [Helm](https://helm.sh/docs/intro/install/)
 - [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-## Get the QuestDB Helm chart
+### Get the QuestDB Helm chart
 
 Using the Helm client, add the official Helm chart repository:
 
@@ -33,7 +47,7 @@ Update the Helm index:
 helm repo update
 ```
 
-## Run QuestDB
+### Run QuestDB
 
 Start a local cluster using `minikube`:
 
@@ -59,7 +73,7 @@ Result:
 | ------------ | ----- | ------- | -------- | ----- |
 | my-questdb-0 | 1/1   | Running | 1        | 9m59s |
 
-## Querying QuestDB locally
+### Querying QuestDB locally
 
 In order to run queries against your local instance of QuestDB, you can use port
 forwarding:
