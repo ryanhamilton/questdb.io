@@ -3,7 +3,7 @@ import styles from "./styles.module.css"
 import Button from "@theme/Button"
 import { useCloudUrl } from "../../../utils/cloud-url"
 import clsx from "clsx"
-import { BookADemoButtons } from "../../book-a-demo-buttons"
+import { BookADemo } from "../../book-a-demo/buttons"
 
 export const StartBuilding = () => {
   const cloudUrl = useCloudUrl()
@@ -33,7 +33,7 @@ export const StartBuilding = () => {
         Start building now
       </Button>
       <span className={styles.startBuildingCredits}>$200 in free credits</span>
-      <BookADemoButtons className={styles.actions} />
+      <BookADemo className={styles.actions} />
     </div>
   )
 }

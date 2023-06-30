@@ -16,7 +16,7 @@ export const Actions = () => (
         <Button variant="primary">Contact us</Button>
       </Link>{" "}
       or{" "}
-      <Link to="/cloud/book-a-demo">
+      <Link to="/enterprise/book-a-demo">
         <Button variant="secondary">Book a demo</Button>
       </Link>
     </div>
