@@ -20,20 +20,18 @@ and a
 |StatefulSet|x|x|
 |Persistent Volume|x|x|
 |Service|x|x|
-|Ingress|x|x|
+|Ingress|x||
 |Native Secret Handling||x|
 |Snapshots||x|
 |Snapshot Schedules||x|
 
-## Helm
-
-### Prerequisites
+## Prerequisites
 
 - [Helm](https://helm.sh/docs/intro/install/)
 - [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/)
 - [minikube](https://minikube.sigs.k8s.io/docs/start/)
 
-### Get the QuestDB Helm chart
+## Get the QuestDB Helm chart
 
 Using the Helm client, add the official Helm chart repository:
 
@@ -47,7 +45,7 @@ Update the Helm index:
 helm repo update
 ```
 
-### Run QuestDB
+## Run QuestDB
 
 Start a local cluster using `minikube`:
 
@@ -73,7 +71,7 @@ Result:
 | ------------ | ----- | ------- | -------- | ----- |
 | my-questdb-0 | 1/1   | Running | 1        | 9m59s |
 
-### Querying QuestDB locally
+## Querying QuestDB locally
 
 In order to run queries against your local instance of QuestDB, you can use port
 forwarding:
