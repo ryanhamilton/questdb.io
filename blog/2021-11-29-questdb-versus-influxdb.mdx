@@ -117,10 +117,11 @@ ALTER TABLE sensors ALTER COLUMN firmware ADD INDEX;
 ```
 
 QuestDB has full support for relational queries, whereas InfluxDB is a NoSQL,
-non-relational database with a custom data model. QuestDB supports both
-schema-agnostic ingestions over InfluxDB line protocol and a relational data
-model. Users can leverage both paradigms and perform SQL JOINs to correlate
-"schemaless" data with relational data by timestamp.
+[non-relational database](/glossary/non-relational-database/) with a custom data
+model. QuestDB supports both schema-agnostic ingestions over InfluxDB line
+protocol and a relational data model. Users can leverage both paradigms and
+perform SQL JOINs to correlate "schemaless" data with relational data by
+timestamp.
 
 <Screenshot
   alt="A combination of schema-agnostic ingestion and relational data stored and queried in QuestDB"
@@ -252,9 +253,9 @@ $ ./tsbs_load_influx --db-name=benchmark --file=/tmp/influx_data --urls=http://l
 
 Here, we use a `cpu-only` scenario with two days of CPU data for various numbers
 of simulated hosts. The number of hosts is set to 100, 1K, 100K, and 10M to
-demonstrate the effects of [high data cardinality](/glossary/high-cardinality/) on
-ingestion performance. We use ten client connections for the benchmark in both
-cases.
+demonstrate the effects of [high data cardinality](/glossary/high-cardinality/)
+on ingestion performance. We use ten client connections for the benchmark in
+both cases.
 
 The chart below summarizes the results for ingestion performance:
 

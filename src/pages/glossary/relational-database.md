@@ -93,7 +93,8 @@ properties are:
 
 ## Relational databases vs. non-relational databases
 
-The table below compares the traits of relational and non-relational databases:
+The table below compares the traits of relational and
+[non-relational databases](/glossary/non-relational-database/):
 
 |                  | Relational Databases              | Non-relational Databases                                    |
 | ---------------- | --------------------------------- | ----------------------------------------------------------- |
