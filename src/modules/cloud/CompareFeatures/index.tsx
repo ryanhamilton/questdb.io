@@ -7,19 +7,21 @@ import { FeatureTable } from "../../../components/FeatureTable"
 const cols: Col[] = [
   {
     title: "Open Source",
+    width: "30%",
   },
   {
     title: "QuestDB Cloud",
+    width: "30%",
   },
 ]
 
 const coreFeaturesRows: Row[] = [
   {
-    title: "High-throughput ingestion",
-    values: ["available", "available"],
+    title: "Configuration-free data compression",
+    values: ["unavailable", "available"],
   },
   {
-    title: "Out-of-order ingestion",
+    title: "High-throughput ingestion",
     values: ["available", "available"],
   },
   {
@@ -27,31 +29,11 @@ const coreFeaturesRows: Row[] = [
     values: ["available", "available"],
   },
   {
-    title: "Time-series-native SQL extensions",
-    values: ["available", "available"],
-  },
-  {
-    title: "Data compression",
-    values: ["unavailable", "available-new"],
-  },
-  {
-    title: "High-performance data migration",
-    values: ["available", "available"],
-  },
-  {
-    title: "Geospatial data type",
-    values: ["available", "available"],
-  },
-  {
-    title: "Cloud-native backups",
-    values: ["available", "available"],
-  },
-  {
     title: "Built-in web console",
     values: ["available", "available"],
   },
   {
-    title: "Cold storage support",
+    title: "Cold storage integration",
     values: ["unavailable", "coming-soon"],
   },
 ]
@@ -70,24 +52,24 @@ const securityFeaturesRows: Row[] = [
     values: ["not-applicable", "available"],
   },
   {
+    title: "Role-based access control",
+    values: ["unavailable", "available-new"],
+  },
+  {
     title: "EBS volume encryption",
     values: ["not-applicable", "available"],
+  },
+  {
+    title: "IP whitelisting",
+    values: ["not-applicable", "available-new"],
   },
   {
     title: "VPC peering",
     values: ["not-applicable", "coming-soon"],
   },
   {
-    title: "Role-based authorization",
-    values: ["unavailable", "coming-soon"],
-  },
-  {
     title: "Bring your own key encryption",
     values: ["not-applicable", "coming-soon"],
-  },
-  {
-    title: "IP whitelisting",
-    values: ["not-applicable", "available-new"],
   },
 ]
 
@@ -146,7 +128,7 @@ const supportFeaturesRows: Row[] = [
 
 const tableProps = {
   cols,
-  firstColWidth: "50%",
+  firstColWidth: "40%",
 }
 
 export const CompareFeatures = () => {

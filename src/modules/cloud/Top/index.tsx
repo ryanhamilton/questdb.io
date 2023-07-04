@@ -11,9 +11,7 @@ const featureList = [
   "Infrastructure monitoring and logs",
   "Built-in auth and TLS encryption",
   "High availability",
-  "Multiple regions",
-  "Additional database features",
-  "Out-of-the-box compression",
+  "Up to 80% data compression out-of-the-box",
 ]
 
 export const Top = () => {
