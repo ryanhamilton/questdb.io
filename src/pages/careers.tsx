@@ -27,12 +27,6 @@ const currentOpenings: Opening[] = [
     title: "Technical Writer",
     location: "Remote",
   },
-  
-  {
-    href: "/careers/senior-backend-engineer/",
-    title: "Senior Backend Engineer",
-    location: "Remote",
-  },
 
   {
     href: "/careers/core-database-engineer/",
