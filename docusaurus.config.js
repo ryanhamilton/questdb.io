@@ -71,14 +71,6 @@ const config = {
         ),
       },
     ],
-    /**
-     * ...[
-     *   process.env.POSTHOG_API_KEY
-     *     ? require.resolve("posthog-docusaurus/src/index.js")
-     *     : null,
-     * ],
-     */
-
     ...[
       process.env.NODE_ENV === "development"
         ? require.resolve("./plugins/click-through-debug-iframe")
@@ -87,11 +79,6 @@ const config = {
   ].filter(Boolean),
 
   themeConfig: {
-    /**
-     * posthog: {
-     *   apiKey: process.env.POSTHOG_API_KEY,
-     * },
-     */
     colorMode: {
       defaultMode: "dark",
       disableSwitch: false,

@@ -16,7 +16,6 @@
     "@radix-ui/react-dialog": "^0.1.7",
     "clsx": "1.1.1",
     "date-fns": "2.16.1",
-    "posthog-docusaurus": "^1.0.4",
     "react": "16.14.0",
     "react-calendly": "^4.0.1",
     "react-dom": "16.14.0",
