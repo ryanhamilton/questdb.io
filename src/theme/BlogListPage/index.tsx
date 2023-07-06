@@ -50,7 +50,7 @@ const prioritizedTags: ChipProps["items"] = [
   "market data",
   "python",
   "kafka",
-  "time-series",
+  "iot",
   "telegraf",
   "release",
   "engineering",
