@@ -362,7 +362,7 @@ with pg.connect(conn_str, autocommit=True) as connection:
 
         #Query the database and obtain data as Python objects.
 
-        cur.execute('SELECT * FROM trades_pg;')
+        cur.execute('SELECT * FROM test_pg;')
         records = cur.fetchall()
         for row in records:
             print(row)
