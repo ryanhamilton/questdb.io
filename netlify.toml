@@ -369,6 +369,10 @@
   from ="/docs/operations/capacity-planning/"
   to = "/docs/deployment/capacity-planning/"
 
+[[redirects]]
+  from ="/blog/visualizing-iot-data-questdb/"
+  to = "/blog/visualizing-iot-data-mqtt-questdb-grafana/"
+
 [[headers]]
   for = "/*"
   [headers.values]
