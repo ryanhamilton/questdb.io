@@ -17,12 +17,6 @@ type Opening = {
 
 const currentOpenings: Opening[] = [
   {
-    href: "/careers/technical-content-lead/",
-    title: "Technical Content Lead",
-    location: "Remote",
-  },
-
-  {
     href: "/careers/technical-writer/",
     title: "Technical Writer",
     location: "Remote",
