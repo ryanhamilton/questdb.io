@@ -11,7 +11,6 @@ import EditThisPage from "@theme/EditThisPage"
 import styles from "./styles.module.css"
 import customFields from "../../config/customFields"
 import { ensureTrailingSlash } from "../../utils"
-import { Chip } from "../BlogListPage/Chip"
 import { StructuredData } from "../../components/StructuredData"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 
@@ -37,13 +36,7 @@ type MetadataWithSource = Metadata & { source: string }
 function BlogPostItem(props: Props): JSX.Element {
   const readingTimePlural = useReadingTimePlural()
   const { siteConfig } = useDocusaurusContext()
-  const {
-    children,
-    frontMatter,
-    metadata,
-    truncated,
-    isBlogPostPage = false,
-  } = props
+  const { children, frontMatter, metadata } = props
   const {
     date,
     formattedDate,
@@ -66,9 +59,6 @@ function BlogPostItem(props: Props): JSX.Element {
       "@site",
       "",
     )}`
-
-  const isTruncated = typeof truncated === "boolean" ? truncated : false
-  const TitleHeading = isBlogPostPage || isTruncated ? "h1" : "h2"
 
   return (
     <>
@@ -117,9 +107,7 @@ function BlogPostItem(props: Props): JSX.Element {
       </StructuredData>
 
       <header>
-        <TitleHeading className={styles.title}>
-          {isBlogPostPage ? title : <Link to={permalink}>{title}</Link>}
-        </TitleHeading>
+        <h1 className={styles.title}>{title}</h1>
 
         <time dateTime={date} className={styles.date}>
           {formattedDate}
@@ -154,37 +142,27 @@ function BlogPostItem(props: Props): JSX.Element {
       </article>
 
       <footer className={styles.footer}>
-        {isTruncated ? (
-          <Chip
-            permalink={metadata.permalink}
-            label="Read Article"
-            className={styles.readMore}
-          />
-        ) : (
-          <>
-            {tags.length > 0 && (
-              <div className={styles.tags}>
-                Tags:
-                <ul className={styles.tagsList}>
-                  {tags
-                    .filter(({ label }) => label !== "pinned")
-                    .map(({ label, permalink: tagPermalink }) => (
-                      <li key={tagPermalink}>
-                        <Link
-                          key={tagPermalink}
-                          to={ensureTrailingSlash(tagPermalink)}
-                        >
-                          {label}
-                        </Link>
-                      </li>
-                    ))}
-                </ul>
-              </div>
-            )}
-
-            <EditThisPage editUrl={contributeUrl} />
-          </>
+        {tags.length > 0 && (
+          <div className={styles.tags}>
+            Tags:
+            <ul className={styles.tagsList}>
+              {tags
+                .filter(({ label }) => label !== "pinned")
+                .map(({ label, permalink: tagPermalink }) => (
+                  <li key={tagPermalink}>
+                    <Link
+                      key={tagPermalink}
+                      to={ensureTrailingSlash(tagPermalink)}
+                    >
+                      {label}
+                    </Link>
+                  </li>
+                ))}
+            </ul>
+          </div>
         )}
+
+        <EditThisPage editUrl={contributeUrl} />
       </footer>
     </>
   )

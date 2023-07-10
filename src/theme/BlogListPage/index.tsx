@@ -45,17 +45,17 @@ const categories: CategoriesProps["categories"] = [
 ]
 
 const prioritizedTags: ChipProps["items"] = [
-  "sql",
-  "grafana",
-  "market data",
-  "python",
-  "kafka",
-  "iot",
-  "telegraf",
-  "release",
-  "engineering",
-  "prometheus",
-  { label: "k8s", tag: "kubernetes" },
+  "SQL",
+  "GRAFANA",
+  "MARKET DATA",
+  "PYTHON",
+  "KAFKA",
+  "IoT",
+  "TELEGRAF",
+  "RELEASE",
+  "ENGINEERING",
+  "PROMETHEUS",
+  { label: "K8S", tag: "kubernetes" },
 ].map((item) => {
   const name = typeof item === "string" ? item : item.label
   const tag = typeof item === "string" ? item : item.tag

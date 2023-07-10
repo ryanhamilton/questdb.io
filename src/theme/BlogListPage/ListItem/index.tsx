@@ -17,7 +17,7 @@ const ExternalChip = ({ permalink }) => {
   return (
     <Chip
       className={styles.externalPost}
-      label={`Posted on ${externalUrl.hostname}`}
+      label={`Posted on ${externalUrl.hostname}`.toUpperCase()}
       permalink={`${externalUrl.protocol}//${externalUrl.hostname}`}
       size="small"
       skin="secondary"
@@ -64,7 +64,7 @@ export const ListItem = ({ forcedTag, content, belowFold }: Props) => {
       <div className={styles.content}>
         <div className={styles.tags}>
           <Chip
-            label={tag.label}
+            label={tag.label.toUpperCase()}
             permalink={tag.permalink}
             skin="secondary"
             size="small"
