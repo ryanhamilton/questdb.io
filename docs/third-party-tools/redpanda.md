@@ -121,7 +121,7 @@ It also start the
 ## Download Apache Kafka
 
 Download
-[Apache Kafka](https://downloads.apache.org/kafka/3.4.0/kafka_2.12-3.4.0.tgz)
+[Apache Kafka](https://downloads.apache.org/kafka/3.4.1/kafka_2.12-3.4.1.tgz)
 and unzip the file.
 
 This step is required as Redpanda does not have its own Kafka Connect

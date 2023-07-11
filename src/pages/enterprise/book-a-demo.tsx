@@ -6,7 +6,7 @@ const Page = () => (
   <Layout
     canonical="/enterprise/book-a-demo/"
     description="Book a demo for a QuestDB deployment on your infrastructure."
-    title="Book a demo"
+    title="Book a demo of QuestDB Enterprise"
     image="/img/pages/cloud/screens-thumb.png"
   >
     <BookADemo calendlyUrl="https://calendly.com/d/yqw-xc2-tqy/questdb-enterprise" />

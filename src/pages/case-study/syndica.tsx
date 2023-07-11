@@ -438,6 +438,7 @@ const Page = () => {
                 programing language.
                 <Image
                   src="/img/pages/case-study/syndica/questdb-cloud.png"
+                  alt="Screenshot of QuestDB Cloud Connect page"
                   width={568}
                   height={358}
                 />
@@ -448,6 +449,7 @@ const Page = () => {
                 and when.
                 <Image
                   src="/img/pages/case-study/syndica/questdb-cloud2.png"
+                  alt="Screenshot of QuestDB Cloud Monitoring page"
                   width={658}
                   height={495}
                 />

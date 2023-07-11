@@ -56,7 +56,7 @@ const prioritizedTags: ChipProps["items"] = [
   "ENGINEERING",
   "PROMETHEUS",
   { label: "K8S", tag: "kubernetes" },
-  "PANDAS"
+  "PANDAS",
 ].map((item) => {
   const name = typeof item === "string" ? item : item.label
   const tag = typeof item === "string" ? item : item.tag
