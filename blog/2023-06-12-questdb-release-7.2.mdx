@@ -4,13 +4,73 @@ author: QuestDB
 author_url: https://github.com/questdb
 author_image_url: https://avatars.githubusercontent.com/u/52297642?s=200&v=4
 description: QuestDB 7.2 release notes
-tags: [release, open source]
+tags: [release, open source, questdb]
 image: /img/blog/2023-06-12/banner.webp
 slug: questdb-release-7.2
-permalink: https://github.com/questdb/questdb/releases/tag/7.2
 ---
 
-We have released QuestDB 7.2! In this release, we introduce
-[partition split](/docs/concept/partitions/#splitting-and-squashing-time-partitions)
-to reduce write amplification for heavy out-of-order ingestion workloads.
-[Read more...](https://github.com/questdb/questdb/releases/tag/7.2)
+import Screenshot from "@theme/Screenshot"
+
+<Screenshot
+  alt="Release highlight"
+  height={360}
+  src="/img/blog/2023-06-12/banner.webp"
+  width={650}
+/>
+
+## QeustDB 7.2 release overview
+
+In QuestDB 7.2, we introduce implicit variable-size
+[time partitions](/docs/concept/partitions/).
+
+The new feature intelligently splits partitions at strategic points, ensuring
+smaller partition sizes and reducing the surface area for copy-on-write
+operations. This minimizes write amplification and maintains high write
+performance, even during heavy load scenarios.
+
+Previously, QuestDB utilized fixed-size time partitions to store data in
+[ascending chronological order](/docs/concept/storage-model/). However, this
+approach resulted in write amplification, particularly towards the end of each
+time interval.
+
+<Screenshot
+  alt="Release highlight"
+  title="QuestDB throughput before the 7.2 release"
+  height={360}
+  src="/img/blog/2023-06-12/7-2-before.webp"
+  width={700}
+/>
+
+To tackle this problem, implicit variable-size time partitions are introduced.
+
+With the new feature, write amplification is reduced by orders of magnitude.
+Users can now experience sustained write performance, even in demanding
+environments.
+
+<Screenshot
+  alt="Release highlight"
+  title="QuestDB throughput after the 7.2 release"
+  height={360}
+  src="/img/blog/2023-06-12/7-2-after.webp"
+  width={700}
+/>
+
+To further optimize the system, we have implemented a sophisticated statistical
+model to balance the split and squash logic. As a result, partitions
+statistically unlikely to be modified again are asynchronously squashed,
+reducing the number of files on disk and alleviating stress on the OS metadata
+catalog.
+
+## Breaking changes for QuestDB 7.2
+
+This is a breaking change. Partitions created by 7.2 may not be understood by
+earlier versions.
+
+To downgrade the instance version, you may need to
+[`SQUASH`](/docs/reference/sql/alter-table-squash-partitions/) partitions for
+each table.
+
+## Additional resources
+
+- [QuestDB 7.2 release notes](https://github.com/questdb/questdb/releases/tag/7.2)
+- [Splitting and squashing time partitions](/docs/concept/partitions/#splitting-and-squashing-time-partitions)
