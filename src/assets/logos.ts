@@ -1,6 +1,42 @@
 import { CustomerLogo } from "./types"
 
 export const logos: Record<string, CustomerLogo> = {
+  brightcom: {
+    src: "/img/pages/customers/logos/brightcom.svg",
+    alt: "Brightcom logo",
+    width: 149,
+    height: 49,
+  },
+  "norlys-energy-trading": {
+    src: "/img/pages/customers/logos/norlys-energy-trading.svg",
+    alt: "Norlys Energy Trading logo",
+    width: 100,
+    height: 49,
+  },
+  motion: {
+    src: "/img/pages/customers/logos/motion.svg",
+    alt: "Motion logo",
+    width: 149,
+    height: 49,
+  },
+  weidmann: {
+    src: "/img/pages/customers/logos/weidmann.svg",
+    alt: "Weidmann logo",
+    width: 119,
+    height: 39,
+  },
+  airtel: {
+    src: "/img/pages/customers/logos/airtel.svg",
+    alt: "Airtel logo",
+    width: 95,
+    height: 31,
+  },
+  cloudera: {
+    src: "/img/pages/customers/logos/cloudera.svg",
+    alt: "Cloudera logo",
+    width: 140,
+    height: 56,
+  },
   yahoo: {
     src: "/img/pages/customers/logos/yahoo.svg",
     alt: "Yahoo logo",
@@ -39,7 +75,7 @@ export const logos: Record<string, CustomerLogo> = {
     height: 56,
   },
   "tqs-integration": {
-    src: "/img/pages/customers/logos/tqs-integration.svg",
+    src: "/img/pages/customers/logos/tqs.svg",
     alt: "TQS Integration logo",
     width: 140,
     height: 56,

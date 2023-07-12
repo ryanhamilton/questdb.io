@@ -11,42 +11,34 @@ import caCss from "../css/customers/card.module.css"
 import juCss from "../css/customers/jumbotron.module.css"
 import quCss from "../css/customers/quote.module.css"
 import seCss from "../css/section.module.css"
-import _quotes from "../assets/quotes"
+import quotes from "../assets/quotes"
 import { logos } from "../assets/logos"
 import type { CustomerLogo } from "../assets/types"
 
-// temporary duplication across customer and enterprise page for quote module
+const companiesToInclude = [
+  "Airbus",
+  "Yahoo",
+  "Airtel",
+  "Aquis Exchange",
+  "Syndica",
+  "Copenhagen Atomics",
+  "LiveAction",
+  "TQS Integration",
+  "Kepler Cheuvreux",
+  "Toggle",
+  "Prediko",
+  "Motion",
+]
 
-const quotes = _quotes.map(({ author, company, logo, role, text }) => {
-  const Quote = () => (
-    <div key={company} className={quCss.quote}>
-      <div className={quCss.quote__symbol} />
-
-      <div className={quCss.quote__logo}>
-        <img
-          alt={logo.alt}
-          height={logo.height}
-          src={logo.src}
-          width={logo.width}
-          style={{ top: logo.offset ?? 0 }}
-        />
-      </div>
-
-      <p className={quCss.quote__content}>{text}</p>
-
-      <p className={quCss.quote__author}>
-        <span className={quCss.quote__chevron}>&gt;</span>
-        {author}
-        <br />
-        {role}
-        ,&nbsp;
-        {company}
-      </p>
-    </div>
+const filteredQuotes = quotes
+  .filter((quote) =>
+    companiesToInclude.some((company) => quote.company === company),
   )
-
-  return Quote
-})
+  .sort(
+    (a, b) =>
+      companiesToInclude.indexOf(a.company) -
+      companiesToInclude.indexOf(b.company),
+  )
 
 type BulletProps = {
   index: number
@@ -89,9 +81,7 @@ type Customer = {
 const customers: Customer[] = [
   {
     id: "syndica",
-    logo: {
-      ...logos.syndica,
-    },
+    logo: logos.syndica,
     summary:
       "QuestDB is the database for real-time analytics and time-series dashboards at Syndica.",
     image: {
@@ -323,34 +313,22 @@ const customers: Customer[] = [
 ]
 
 const QUOTE_WIDTH = 350
+const title = "Customers"
+const description =
+  "Discover how QuestDB is powering the core infrastructure of companies dealing with time series data and real-time analytics"
 
 const Customers = () => {
-  const title = "Customers"
-  const description =
-    "Discover how QuestDB is powering the core infrastructure of companies dealing with time series data and real-time analytics"
-
   const { ref, width } = useResizeObserver<HTMLDivElement>()
-  // An "item" is a quote
-  // Index in the array of quotes of the item that is "focused"
   const [index, setIndex] = useState(0)
-  // How many items we can show on the screen
   const viewportSize = Math.max(1, Math.floor((width ?? 0) / QUOTE_WIDTH))
-  // How many items will actually be displayed (can be smaller than viewportSize)
   const viewportCount =
-    viewportSize === 0 ? 0 : Math.ceil(quotes.length / viewportSize)
-  // Page number
+    viewportSize === 0 ? 0 : Math.ceil(filteredQuotes.length / viewportSize)
   const page = Math.floor(index / viewportSize)
-  // The quotes to show
-  const viewportQuotes = quotes.slice(
+  const visibleQuotes = filteredQuotes.slice(
     page * viewportSize,
     (page + 1) * viewportSize,
   )
-  const increaseIndex = useCallback(() => {
-    setIndex((index) => Math.min(index + viewportSize, quotes.length - 1))
-  }, [viewportSize])
-  const decreaseIndex = useCallback(() => {
-    setIndex((index) => Math.max(index - viewportSize, 0))
-  }, [viewportSize])
+
   return (
     <Layout canonical="/customers" description={description} title={title}>
       <section className={clsx(seCss.section, seCss["section--odd"])}>
@@ -387,8 +365,33 @@ const Customers = () => {
           <TransitionGroup component={null}>
             <CSSTransition key={page} timeout={200} classNames="item">
               <div className={quCss.carousel__group}>
-                {viewportQuotes.map((Quote) => (
-                  <Quote key={quotes.indexOf(Quote)} />
+                {visibleQuotes.map(({ company, logo, text, author, role }) => (
+                  <div key={company} className={quCss.quote}>
+                    <div className={quCss.quote__symbol} />
+
+                    <div className={quCss.quote__logo}>
+                      <img
+                        alt={logo.alt}
+                        height={logo.height}
+                        src={logo.src}
+                        width={logo.width}
+                        style={{ top: logo.offset ?? 0 }}
+                      />
+                    </div>
+
+                    <p className={quCss.quote__content}>{text}</p>
+
+                    {typeof author === "string" && (
+                      <p className={quCss.quote__author}>
+                        <span className={quCss.quote__chevron}>&gt;</span>
+                        {author}
+                        <br />
+                        {role}
+                        ,&nbsp;
+                        {company}
+                      </p>
+                    )}
+                  </div>
                 ))}
               </div>
             </CSSTransition>
@@ -404,7 +407,9 @@ const Customers = () => {
                 [quCss["controls__chevron-wrapper--hidden"]]: page === 0,
               },
             )}
-            onClick={decreaseIndex}
+            onClick={() => {
+              setIndex((index) => Math.max(index - viewportSize, 0))
+            }}
           >
             <Chevron className={quCss.controls__chevron} side="left" />
           </div>
@@ -432,7 +437,11 @@ const Customers = () => {
                   page === viewportCount - 1,
               },
             )}
-            onClick={increaseIndex}
+            onClick={() => {
+              setIndex((index) =>
+                Math.min(index + viewportSize, quotes.length - 1),
+              )
+            }}
           >
             <Chevron className={quCss.controls__chevron} side="right" />
           </div>

@@ -28,7 +28,6 @@
   flex-direction: column;
   border-radius: var(--theme-card-border-radius);
   background: var(--theme-card-bg-color);
-  user-select: none;
   max-width: 530px;
 }
 

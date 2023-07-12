@@ -1,14 +1,9 @@
 import { logos } from "./logos"
+import { CustomerLogo } from "./types"
 
 type Quote = {
-  website: string
-  logo: {
-    alt: string
-    src: string
-    height: number
-    width: number
-    offset?: number
-  }
+  website?: string
+  logo: CustomerLogo
   text: string
   author: string
   role: string
@@ -119,7 +114,7 @@ const quotes: Quote[] = [
     website: "https://www.tqsintegration.com",
     logo: {
       alt: "TQS Integration logo",
-      src: "/img/pages/customers/cards/tqs-integration.svg",
+      src: "/img/pages/customers/logos/tqs.svg",
       height: 56,
       width: 140,
     },
@@ -184,6 +179,36 @@ const quotes: Quote[] = [
     author: "Erdem Aydemir",
     role: "Software Engineer",
     company: "Innova (Türk Telekom)",
+  },
+  {
+    logo: logos.airtel,
+    text:
+      "Switching to QuestDB was a game-changer for our analytics. With Elasticsearch, we faced slow ingestion and latency issues for queries. With QuestDB, we now process 200M records per day smoothly.",
+    company: "Airtel",
+    author: "Ajay Pilaniya",
+    role: "Lead Media Analytics",
+  },
+  {
+    logo: {
+      ...logos.prediko,
+      width: 100,
+    },
+    text:
+      "At Prediko, we need to give our customers a platform to digest, manipulate, and aggregate millions of data points in milliseconds. QuestDB stands up to and surpasses our requirements, with the ease of use SQL provides",
+    author: "Nicolas Sabatier",
+    role: "Co-founder and CTO of Prediko",
+    company: "Prediko",
+  },
+  {
+    logo: {
+      ...logos.motion,
+      width: 120,
+    },
+    text:
+      "We use QuestDB to track API usage. For time-series data, QuestDB is a no-brainer, and the client libraries are very intuitive.",
+    company: "Motion",
+    author: "Chander Ramesh",
+    role: "Head of Engineering",
   },
 ]
 
