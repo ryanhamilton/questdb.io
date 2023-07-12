@@ -4,7 +4,8 @@ sidebar_label: DROP TABLE
 description: DROP TABLE SQL keyword reference documentation.
 ---
 
-`DROP TABLE` is used to permanently delete a table and its contents.
+`DROP TABLE` permanently deletes a table and its contents.
+`DROP ALL TABLES` permanently deletes all the tables and their contents.
 
 ## Syntax
 
@@ -31,6 +32,10 @@ reads might delay space reclamation.
 
 ```questdb-sql
 DROP TABLE ratings;
+```
+
+```questdb-sql
+DROP ALL TABLES;
 ```
 
 ## See also
