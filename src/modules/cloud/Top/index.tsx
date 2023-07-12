@@ -29,7 +29,7 @@ export const Top = () => {
         <ul className={styles.list}>
           {featureList.map((feature) => (
             <li className={styles.bullet} key={feature}>
-              <span>{feature}</span>
+              {feature}
             </li>
           ))}
         </ul>

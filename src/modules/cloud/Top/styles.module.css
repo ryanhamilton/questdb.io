@@ -19,15 +19,16 @@
 
 .bullet {
   display: flex;
+  gap: 0.8rem;
   align-items: center;
+  text-align: left;
   font-size: var(--font-size-large);
   font-weight: var(--ifm-font-weight-semibold);
-  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 
 .bullet:before {
   content: "";
-  display: flex;
   width: 0.4rem;
   height: 0.6rem;
   background-repeat: no-repeat;
@@ -35,10 +36,6 @@
   border: none;
   background-image: url("/img/pages/cloud/list-bullet-arrow.svg?inline");
   background-color: transparent;
-}
-
-.bullet span {
-  margin-left: 0.5rem;
 }
 
 .startBuildingRoot {
