@@ -18,7 +18,7 @@ Deduplication can be enabled or disabled at any time for individual tables using
 Deduplication can only be enabled for [Write-Ahead Log (WAL)](/docs/concept/write-ahead-log) tables.
 :::
 
-It is important to specify the upsert keys correctly for deduplication.
+Choosing the UPSERT KEYS correctly is crucial to ensure that deduplication functions as expected.
 
 ## Deduplication UPSERT Keys
 
