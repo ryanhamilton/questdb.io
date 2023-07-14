@@ -217,6 +217,21 @@ and modification through multiple interfaces:
   `cairo.wal.enabled.default`, is used:
   - `true`: creates a WAL table.
   - `false`: creates a non-WAL table.
+  
+## Deduplication
+
+When [Deduplication](/docs/concept/deduplication) is enabled, QuestDB only inserts rows that do not match the existing data. When rows are inserted into a table with the deduplication option configured, QuestDB searches for existing rows to match using the specified `UPSERT KEYS`. If a match is found, the existing rows are replaced with the new row. If no match is found, the new rows are inserted into the table.
+
+Deduplication can only be enabled for WAL (Write-Ahead Log) tables.
+
+It is possible to include multiple columns of different types in the `UPSERT KEYS` list. However, there are a few limitations to keep in mind:
+
+- The designated timestamp column must be included in the list of columns
+- Columns of [STRING and BINARY](/docs/reference/datatypes) types cannot be used in `UPSERT KEYS` list
+
+After table creation the deduplication configuration can be changed at any time using `ALTER` table
+
+- disabled / re-enabled and _UPSERT KEYS_ can be changed using [ALTER TABLE])
 
 ## WITH table parameter
 

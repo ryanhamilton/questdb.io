@@ -153,6 +153,7 @@ module.exports = {
         "concept/write-ahead-log",
         "concept/storage-model",
         "concept/designated-timestamp",
+        "concept/deduplication",
         "concept/sql-extensions",
         "concept/jit-compiler",
         "concept/partitions",
