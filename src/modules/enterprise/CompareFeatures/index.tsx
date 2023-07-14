@@ -27,7 +27,7 @@ const rows: Row[] = [
     values: ["Commercial", "Commercial", "Commercial"],
   },
   {
-    title: "Max supported CPUs",
+    title: "Max supported cores",
     values: ["Up to 4", "Up to 16", "Unlimited"],
   },
   {
