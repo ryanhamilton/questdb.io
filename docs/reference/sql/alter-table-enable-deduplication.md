@@ -7,7 +7,9 @@ description: ENABLE DEDUPLICATION SQL command reference documentation.
 Enables storage level data deduplication on inserts and configures UPSERT KEYS.
 
 :::note
-Deduplication can only be enabled for [Write-Ahead Log (WAL)](/docs/concept/write-ahead-log) tables.
+- Deduplication can only be enabled for [Write-Ahead Log (WAL)](/docs/concept/write-ahead-log) tables.
+- Enabling deduplication does not have any effect on the existing data and only applies to newly inserted data. This means that a table with deduplication enabled can still contain duplicate data.
+- Enabling deduplication does not have any effect on modifying data with UPDATE statements.
 :::
 
 ## Syntax

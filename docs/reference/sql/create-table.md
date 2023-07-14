@@ -227,7 +227,7 @@ Deduplication can only be enabled for WAL (Write-Ahead Log) tables.
 It is possible to include multiple columns of different types in the `UPSERT KEYS` list. However, there are a few limitations to keep in mind:
 
 - The designated timestamp column must be included in the list of columns
-- Columns of [STRING and BINARY](/docs/reference/datatypes) types cannot be used in `UPSERT KEYS` list
+- Columns of [STRING and BINARY](/docs/reference/sql/datatypes) types cannot be used in `UPSERT KEYS` list
 
 After table creation the deduplication configuration can be changed at any time using `ALTER` table
 

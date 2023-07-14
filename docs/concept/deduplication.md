@@ -111,7 +111,7 @@ INSERT INTO TICKER_PRICE VALUES ('2023-07-14', 'QQQ', 98.02); -- row 1
 INSERT INTO TICKER_PRICE VALUES ('2023-07-14', 'QQQ', 91.16); -- row 2
 ```
 
-After these inserts, all rows with ts='2023-07-14' and ticker='QQQ' are replaced, first by row 1 and then by row 2, and the price is set to 91.16:
+After these inserts, all rows with `ts='2023-07-14'` and `ticker='QQQ'` are replaced, first by row 1 and then by row 2, and the price is set to **91.16**:
 
 ```sql
 SELECT * FROM TICKER_PRICE;
