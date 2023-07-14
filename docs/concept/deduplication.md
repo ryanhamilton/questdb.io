@@ -10,9 +10,9 @@ Starting from QuestDB 7.2.3, there is an option to enable storage-level data ded
 
 Deduplication can be enabled or disabled at any time for individual tables using the following statements:
 
-- [CREATE TABLE](/docs/reference/sql/create-table/#deduplication) statement
-- [ALTER TABLE ENABLE DEDUP](/docs/reference/sql/alter-table-enable-deduplication) statement
-- [ALTER TABLE DISABLE DEDUP](/docs/reference/sql/alter-table-disable-deduplication) statement
+- [CREATE TABLE](/docs/reference/sql/create-table/#deduplication)
+- [ALTER TABLE ENABLE DEDUP](/docs/reference/sql/alter-table-enable-deduplication)
+- [ALTER TABLE DISABLE DEDUP](/docs/reference/sql/alter-table-disable-deduplication)
 
 :::note
 Deduplication can only be enabled for [Write-Ahead Log (WAL)](/docs/concept/write-ahead-log) tables.
@@ -22,7 +22,7 @@ Choosing the UPSERT KEYS correctly is crucial to ensure that deduplication funct
 
 ## Deduplication UPSERT Keys
 
-_UPSERT_ is an abbreviation for _UPDATE_ or _INSERT_, which is a common database concept. It means that the new row either _UPDATEs_ or replaces the existing row (or multiple rows in the general case) when the matching criteria are met. Otherwise, the new row is _INSERTed_ into the table. In QuestDB deduplication, the _UPSERT_ matching criteria are set by defining a column list in the `UPSERT KEYS` clause in the `CREATE` or `ALTER` table statement.
+_UPSERT_ is an abbreviation for _UPDATE_ or _INSERT_, which is a common database concept. It means that the new row _UPDATEs_ the existing row (or multiple rows in the general case) when the matching criteria are met. Otherwise, the new row is _INSERTed_ into the table. In QuestDB deduplication, the _UPSERT_ matching criteria are set by defining a column list in the `UPSERT KEYS` clause in the `CREATE` or `ALTER` table statement.
 
 `UPSERT KEYS` can be changed at any time. It can contain one or more columns. However, there are some limitations on the `UPSERT KEYS` list:
 
@@ -123,6 +123,21 @@ SELECT * FROM TICKER_PRICE;
 | 2023-07-14 | QQQ    | 91.16  |
 | 2023-07-14 | AAPL   | 105.18 |
 | 2023-07-14 | AAPL   | 105.21 |
+
+
+## Checking Deduplication Configuration
+
+It is possible to utilize  metadata [tables](/docs/reference/function/meta#tables) query to verify whether deduplication is enabled for a specific table:
+
+```sql
+SELECT dedup FROM tables() WHERE name = '<the table name>'
+```
+
+The function [table_columns](/docs/reference/function/meta#table_columns) can be used to identify which columns are configured as deduplication UPSERT KEYS:
+
+```sql
+SELECT column, upsertKey from table_columns('<the table name>')
+```
 
 ## Practical considerations
 
