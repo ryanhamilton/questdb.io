@@ -1,15 +1,21 @@
 ---
 title: ALTER TABLE DEDUP DISABLE
-sidebar_label: DISABLE DEDUPLICATION
+sidebar_label: DEDUP DISABLE 
 description: DISABLE DEDUPLICATION SQL command reference documentation.
 ---
 
-TODO
+Disables storage level data deduplication on inserts
 
 ## Syntax
 
-TODO
+![Flow chart showing the syntax of the ALTER TABLE DISABLE DEDUP statement](/img/docs/diagrams/disableDedup.svg)
 
 ## Example
 
-TODO
+Disable deduplicatin on table TICKER_PRICE
+
+```sql
+ALTER TABLE TICKER_PRICE DEDUP DISABLE  
+```
+
+See more example at [data deduplication](/docs/concept/deduplication#example) page

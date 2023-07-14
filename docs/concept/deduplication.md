@@ -27,7 +27,7 @@ _UPSERT_ is an abbreviation for _UPDATE_ or _INSERT_, which is a common database
 `UPSERT KEYS` can be changed at any time. It can contain one or more columns. However, there are some limitations on the `UPSERT KEYS` list:
 
 - The [Designated Timestamp](/docs/concept/designated-timestamp) column must be included in the `UPSERT KEYS` list.
-- Columns of [STRING and BINARY](/docs/reference/datatypes) types cannot be used in the `UPSERT KEYS` list.
+- Columns of [STRING and BINARY](/docs/reference/sql/datatypes) types cannot be used in the `UPSERT KEYS` list.
 
 ## Example
 

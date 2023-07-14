@@ -244,7 +244,8 @@ module.exports = {
                 "reference/sql/alter-table-set-param",
                 "reference/sql/alter-table-set-type",
                 "reference/sql/alter-table-squash-partitions",
-                
+                "reference/sql/alter-table-enable-deduplication",
+                "reference/sql/alter-table-disable-deduplication",                
               ],
             },
             {
