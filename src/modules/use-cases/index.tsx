@@ -24,7 +24,7 @@ const useCases = [
       "SQL time series extensions",
       "Built-in SQL optimizer and REST API",
       "PostgreSQL driver compatibility",
-      "Real-time streaming API",
+      "InfluxDB Line Protocol API",
       "SQL and time-series joins",
       "Grafana integration",
     ],
@@ -37,7 +37,7 @@ const useCases = [
     title: "Operational simplicity",
     uses: [
       "Fully managed hosted cloud",
-      "Elastic cloud instances",
+      "Role-based access control",
       "TLS for all protocols",
       "Online snapshot based backups",
       "Monitoring dashboards",
