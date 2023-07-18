@@ -1,14 +1,13 @@
 import React from "react"
 import Layout from "../theme/Layout"
+import { Section } from "../components/Section"
 
 import seCss from "../css/section.module.css"
 import clsx from "clsx"
 
 import UseCaseCustomers, { Customer } from "../components/UseCaseQuotes"
+import { Highlights } from "../modules/highlights"
 
-import ilCss from "../css/use-cases/illustration.module.css"
-import flCss from "../css/use-cases/flashy.module.css"
-import hlCss from "../css/use-cases/highlights.module.css"
 import liCss from "../css/use-cases/list.module.css"
 import ucCss from "../css/use-cases/use-case.module.css"
 import prCss from "../css/property.module.css"
@@ -30,100 +29,13 @@ const List = ({
 )
 
 const Heading = () => (
-  <section
-    className={clsx(
-      seCss["section--inner"],
-      seCss["section--center"],
-      ucCss.section,
-    )}
-  >
-    <div className={seCss.section__header}>
-      <h1
-        className={clsx(seCss.section__title, seCss["section__title--accent"])}
-      >
-        Use cases and industries
-      </h1>
-
-      <p
-        className={clsx(
-          seCss.section__subtitle,
-          seCss["section__subtitle--accent"],
-          "text--center",
-        )}
-      >
-        QuestDB offers high throughput ingestion and real-time SQL queries for
-        applications in a wide range of use cases and industries
-      </p>
-    </div>
-    <img
-      alt="An illustration of QuestDB use cases"
-      className={ilCss.illustration}
-      height={584}
-      src="/img/pages/use-cases/banner.svg"
-      width={1091}
-    />
-  </section>
-)
-
-type UseCaseHighlightItem = {
-  key: string
-  title: string
-  description: string
-  image: string
-}
-
-const useCaseHighlights: UseCaseHighlightItem[] = [
-  {
-    key: "monitoring-and-real-time-analytics",
-    title: "Monitoring and Real-time analytics",
-    description:
-      "Observability, monitoring and analytics for time series data generated from infrastructure and software applications",
-    image: "/img/pages/use-cases/real-time-analytics.svg",
-  },
-  {
-    key: "financial-market-data",
-    title: "Financial market data",
-    description:
-      "Processing billions of rows of high-frequency tick data in milliseconds and exploring vasts datasets of market data on the fly",
-    image: "/img/pages/use-cases/financial-market-data.svg",
-  },
-  {
-    key: "industrial-analytics",
-    title: "Industrial analytics",
-    description:
-      "Collecting high-frequency metrics at scale from rockets, plants, machinery, fleets or any type of IIoT sensor \n",
-    image: "/img/pages/use-cases/industrial-telemetry.svg",
-  },
-]
-
-const UseCaseHighlights = () => (
-  <section
-    className={clsx(
-      seCss["section--inner"],
-      seCss["section--center"],
-      ucCss.section,
-    )}
-  >
-    <div className={hlCss.highlights}>
-      {useCaseHighlights.map((highlight) => (
-        <div
-          className={clsx(flCss.flashy, ucCss.useCaseHighlight)}
-          key={`${highlight.title}-${highlight.key}`}
-        >
-          <img
-            src={highlight.image}
-            alt={highlight.title}
-            className={flCss.flashy__image}
-          />
-          <h3 className={flCss.flashy__title}>{highlight.title}</h3>
-          <p className={flCss.flashy__content}>{highlight.description}</p>
-          <a href={`#${highlight.key}`} className={flCss.flashy__link}>
-            Learn more
-          </a>
-        </div>
-      ))}
-    </div>
-  </section>
+  <Section center>
+    <Section.Title level={1}>Use cases and industries</Section.Title>
+    <Section.Subtitle center style={{ maxWidth: "800px" }}>
+      QuestDB offers high throughput ingestion and real-time SQL queries for
+      applications in a wide range of use cases and industries
+    </Section.Subtitle>
+  </Section>
 )
 
 const monitoringCustomers: Customer[] = [
@@ -366,7 +278,7 @@ const description =
 const UseCasesPage = () => (
   <Layout canonical="/use-cases" description={description} title={title}>
     <Heading />
-    <UseCaseHighlights />
+    <Highlights />
     <Monitoring />
     <MarketData />
     <IndustrialTelemetry />

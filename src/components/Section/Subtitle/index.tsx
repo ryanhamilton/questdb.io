@@ -7,6 +7,7 @@ type Props = {
   center?: boolean
   size?: "small" | "medium"
   className?: string
+  style?: React.CSSProperties
 }
 
 export const Subtitle = ({
@@ -14,6 +15,7 @@ export const Subtitle = ({
   center,
   size = "medium",
   className = "",
+  style: styleProp,
 }: Props) => (
   <p
     className={clsx(
@@ -22,6 +24,7 @@ export const Subtitle = ({
       style[`size-${size}`],
       className,
     )}
+    style={styleProp}
   >
     {children}
   </p>
