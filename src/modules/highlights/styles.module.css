@@ -1,42 +1,52 @@
 .root {
+  --gap: 2rem;
+  --title-size: 1.3rem;
+  --description-size: 1.1rem;
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  padding: 1rem;
+  justify-content: center;
+  gap: var(--gap);
+  padding: var(--gap);
   align-items: stretch;
   flex-wrap: wrap;
 }
 
 @media screen and (min-width: 900px) {
   .root {
-    gap: 2rem;
+    --gap: 2rem;
+    --title-size: 1.4rem;
+    --description-size: 1.2rem;
   }
 }
 
 .card {
   display: flex;
   flex: 1 0 30%;
-  min-width: 200px;
+  min-width: 250px;
+  max-width: 300px;
   flex-direction: column;
-  gap: 2rem;
+  justify-content: space-between;
+  gap: var(--gap);
+  padding: var(--gap);
   border-radius: var(--theme-card-border-radius);
   background: var(--theme-card-bg-color);
-  padding: 1rem;
 }
 
 .title {
-  font-size: var(--font-size-big-2);
+  font-size: var(--title-size);
   font-weight: var(--ifm-font-weight-bold);
   margin: 0;
   text-align: center;
 }
 
 .description {
-  font-size: var(--font-size-large);
+  font-size: var(--description-size);
+  margin: 0;
+  text-align: center;
 }
 
 .image {
-  flex: 0 1 100px;
+  flex: 0 0 30%;
 }
 
 :global(html[data-theme="light"]) .image {

@@ -12,7 +12,7 @@ type Highlight = {
 const useCaseHighlights: Highlight[] = [
   {
     key: "monitoring-and-real-time-analytics",
-    title: "Monitoring and Real-time analytics",
+    title: "Monitoring & analytics",
     description:
       "Observability, monitoring and analytics for time series data generated from infrastructure and software applications",
     image: "/img/pages/use-cases/real-time-analytics.svg",
@@ -21,14 +21,14 @@ const useCaseHighlights: Highlight[] = [
     key: "financial-market-data",
     title: "Financial market data",
     description:
-      "Processing billions of rows of high-frequency tick data in milliseconds and exploring vasts datasets of market data on the fly",
+      "Process billions of rows of tick data in milliseconds and explore vasts datasets of market data on the fly",
     image: "/img/pages/use-cases/financial-market-data.svg",
   },
   {
     key: "industrial-analytics",
     title: "Industrial analytics",
     description:
-      "Collecting high-frequency metrics at scale from rockets, plants, machinery, fleets or any type of IIoT sensor \n",
+      "Collect high-frequency metrics at scale from rockets, plants, machinery, fleets or any type of IIoT sensor \n",
     image: "/img/pages/use-cases/industrial-telemetry.svg",
   },
 ]
