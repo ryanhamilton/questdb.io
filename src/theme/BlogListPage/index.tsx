@@ -191,7 +191,6 @@ function BlogListPage(props: Props): JSX.Element {
         title={titles.find(([when]) => Boolean(when))?.[1] ?? ""}
         description={descriptions.find(([when]) => Boolean(when))?.[1] ?? ""}
         wrapperClassName={ThemeClassNames.wrapper.blogPages}
-        pageClassName={ThemeClassNames.page.blogListPage}
         searchMetadatas={{
           // assign unique search tag to exclude this page from search results!
           tag: "blog_posts_list",

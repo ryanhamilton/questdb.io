@@ -210,6 +210,7 @@ html[data-theme="light"] {
   --theme-tutorial-post-card-hover-border: 1px solid var(--palette-dark-10);
 
   --theme-screenshot-background-color: white;
+  --ifm-hr-border-color: var(--palette-black-10);
 }
 
 html[data-theme="dark"] .DocSearch {

@@ -1,4 +1,3 @@
-import clsx from "clsx"
 import React, { ReactNode } from "react"
 import Head from "@docusaurus/Head"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
@@ -11,11 +10,8 @@ import Navbar from "@theme/Navbar"
 import { MetadataContextProvider } from "@theme/useMetadataContext"
 import { ensureTrailingSlash } from "../../utils"
 
-import styles from "./styles.module.css"
-
 export type Props = {
   canonical?: string
-  flex: boolean
   replaceTitle?: boolean
   children: ReactNode
   title?: string
@@ -24,7 +20,6 @@ export type Props = {
   keywords?: string | string[]
   permalink?: string
   wrapperClassName?: string
-  pageClassName?: string
   searchMetadatas?: {
     version?: string
     tag?: string
@@ -35,7 +30,6 @@ const Layout = ({
   canonical,
   children,
   description,
-  flex,
   image,
   keywords,
   permalink,
@@ -118,19 +112,11 @@ const Layout = ({
         </Head>
         <AnnouncementBar />
         <Navbar />
-        <div
-          className={clsx(styles.wrapper, wrapperClassName, {
-            [styles.flex]: flex,
-          })}
-        >
-          {children}
-        </div>
+        <div className={wrapperClassName}>{children}</div>
         <Footer />
       </LayoutProviders>
     </MetadataContextProvider>
   )
 }
-
-Layout.defaultProps = { flex: false }
 
 export default Layout

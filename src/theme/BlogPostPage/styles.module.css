@@ -1,3 +1,11 @@
+.header,
+.markdown,
+.footer {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 .title {
   font-size: 2rem;
 }
@@ -10,6 +18,11 @@
   .title {
     font-size: 3rem;
   }
+}
+
+.header {
+  padding-top: 2rem;
+  border-bottom: 2px solid var(--ifm-hr-border-color);
 }
 
 .date {
@@ -34,12 +47,36 @@
 }
 
 .avatarName {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   margin: 0;
 }
 
 .readMore {
   margin-left: auto;
+}
+
+.markdown h2 {
+  font-size: 2.2rem;
+}
+
+.markdown h3 {
+  font-size: 2rem;
+}
+
+.markdown h4 {
+  font-size: 1.8rem;
+}
+
+.markdown h5 {
+  font-size: 1.6rem;
+}
+
+.markdown h6 {
+  font-size: 1.4rem;
+}
+
+.markdown {
+  font-size: 1.2rem;
 }
 
 .footer {
