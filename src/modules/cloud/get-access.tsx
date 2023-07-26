@@ -14,7 +14,7 @@ export const GetAccess = ({ trigger }: { trigger?: React.ReactNode }) => (
       )}
     </Dialog.Trigger>
     <Dialog.Content>
-      <ContactForm interestedIn="cloud" modal />
+      <ContactForm modal />
     </Dialog.Content>
   </Dialog>
 )

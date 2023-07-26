@@ -6,3 +6,10 @@ export type CustomerLogo = {
   height?: number
   offset?: number
 }
+
+export type ProviderLogo = {
+  src: string
+  width: number
+  height: number
+  alt: string
+}

@@ -1,0 +1,87 @@
+.slider {
+  position: relative;
+  display: flex;
+  width: 100%;
+  margin: 2rem 0 6rem;
+  cursor: pointer;
+  align-items: center;
+  user-select: none;
+  touch-action: none;
+}
+
+.thumbWrap {
+  display: flex;
+  align-items: center;
+}
+.track {
+  flex-grow: 1;
+  border-radius: 1rem;
+  background-color: var(--theme-input-bg-color);
+
+  /* horizontal-specific */
+  height: 0.4rem;
+}
+
+.range {
+  position: absolute;
+  background-color: var(--palette-pink);
+  border-radius: 1rem;
+  height: 100%;
+}
+
+.thumb {
+  --thumb-size: 1.5rem;
+  --tooltip-gap: 1.5rem;
+  position: relative;
+  all: unset;
+  display: block;
+  width: var(--thumb-size);
+  height: var(--thumb-size);
+  background-color: var(--palette-pink);
+  border-radius: 50%;
+  font-weight: 700;
+}
+
+.thumb:focus {
+  box-shadow: 0 0 0 4px rgba(209, 70, 113, 0.25);
+}
+
+/* tooltip content */
+
+.thumb::after {
+  display: flex;
+  content: attr(data-label);
+  position: absolute;
+  white-space: nowrap;
+  top: calc(100% + var(--tooltip-gap));
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 3px;
+  padding: 0.3rem 0.8rem;
+  background-color: var(--theme-input-bg-color);
+}
+
+.thumb::before {
+  --arrow-size: 5px;
+  content: "";
+  position: absolute;
+  top: calc(
+    100% + var(--tooltip-gap) - var(--arrow-size) +
+      /* ensure no gap between content and arrow */ 1px
+  );
+  left: calc(var(--thumb-size) / 2 - var(--arrow-size));
+  border: var(--arrow-size) solid transparent;
+  border-left: var(--arrow-size) solid var(--theme-input-bg-color);
+  border-top: var(--arrow-size) solid var(--theme-input-bg-color);
+  transform: rotate(45deg);
+}
+
+html[data-theme="light"] {
+  .track,
+  .thumb::before,
+  .thumb::after {
+    background-color: var(--theme-card-secondary-bg-color);
+    border-color: var(--theme-card-secondary-bg-color);
+  }
+}
+

@@ -1,0 +1,124 @@
+.title {
+  margin-bottom: 2rem;
+}
+
+.card {
+  --gap: 2rem;
+  background-color: var(--theme-card-bg-color);
+  border-radius: var(--theme-card-border-radius);
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap);
+}
+
+.providerSelect {
+  justify-content: center;
+}
+
+.regionSelect {
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.card [data-area="regions"] {
+  flex: 1 0 50%;
+}
+
+.labelledInput {
+  display: grid;
+  grid-template-columns: 80px auto;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.sliders {
+  padding-right: 20%; /* to ensure slider tooltip value does not go out of viewport */
+}
+
+.sliders .labelledInput {
+  align-items: baseline;
+}
+
+.result {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-basis: 100%;
+  height: 100px; /* hardcode height to ensure the same space is used for price and for "contact us" */
+}
+
+.toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.result h2 {
+  margin: unset;
+  font-size: 2.5rem;
+}
+
+.result h2 a {
+  all: unset;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+.compressionInfo {
+  grid-row: 4;
+  font-size: var(--font-size-large);
+  color: var(--palette-pale-blue);
+  margin-top: calc(0.5rem - var(--gap));
+}
+
+.accent {
+  color: var(--theme-card-text-color);
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.8rem;
+}
+
+@media only screen and (min-width: 600px) {
+  .card {
+    padding: 2rem 4rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .sliders {
+    padding-right: 0;
+  }
+
+  .result {
+    align-self: center;
+    margin-top: -4rem;
+    flex-basis: 40%;
+    flex-direction: column;
+  }
+
+  .result h2 {
+    font-size: 3.5rem;
+  }
+
+  .compressionInfo {
+    grid-row: initial;
+  }
+
+  .cta {
+    margin-top: calc(0.5rem - var(--gap));
+  }
+
+  .providerSelect {
+    justify-content: normal;
+  }
+
+  .regionSelect {
+    grid-column: 1 / 2;
+  }
+}

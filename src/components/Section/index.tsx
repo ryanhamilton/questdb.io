@@ -14,6 +14,7 @@ type Props = {
   noGap?: boolean
   center?: boolean
   className?: string
+  id?: string
 }
 
 export const Section = ({
@@ -25,6 +26,7 @@ export const Section = ({
   noGap,
   center,
   className = "",
+  id,
 }: Props) => (
   <div
     className={clsx(
@@ -39,6 +41,7 @@ export const Section = ({
       },
       className,
     )}
+    id={id}
   >
     {children}
   </div>

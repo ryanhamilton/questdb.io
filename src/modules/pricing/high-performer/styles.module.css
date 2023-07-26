@@ -1,17 +1,24 @@
 .root {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 2rem;
 }
 
 .quoteWrapper {
   display: grid;
-  grid-gap: 1rem;
+  gap: 1rem;
 }
 
 .quote {
   margin: 0;
+  font-size: 1.2rem;
+}
+
+@media screen and (min-width: 500px) {
+  .quote {
+    font-size: 1.5rem;
+  }
 }
 
 .stars {
@@ -29,7 +36,7 @@
   background-image: url("/img/pages/pricing/star.svg?inline");
 }
 
-html[data-theme='light'] .star {
+html[data-theme="light"] .star {
   filter: invert(1);
 }
 

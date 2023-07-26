@@ -6,13 +6,11 @@ import emailPattern from "../../../utils/emailPattern"
 import subscribeStyle from "../../../components/Subscribe/style.module.css"
 import style from "./styles.module.css"
 import clsx from "clsx"
-import type { PricingPlan } from "../../pricing/plan"
 import Link from "@docusaurus/Link"
 import CameraIcon from "../../../assets/img/camera.svg"
 import SvgImage from "../../../components/SvgImage"
 
 type Props = {
-  interestedIn?: PricingPlan["type"] | "custom" | "cloud" | "sla"
   defaultEmail?: string
   defaultName?: string
   defaultCompany?: string
@@ -23,7 +21,6 @@ export const ContactForm = ({
   defaultEmail = "",
   defaultName = "",
   defaultCompany = "",
-  interestedIn,
   modal,
 }: Props) => {
   const [loading, setLoading] = useState(false)
@@ -39,7 +36,6 @@ export const ContactForm = ({
       name: formData.get("name"),
       company: formData.get("company"),
       email: formData.get("email"),
-      interestedIn: formData.get("interestedIn"),
     }
 
     try {
@@ -69,14 +65,6 @@ export const ContactForm = ({
             ) : (
               <div className={style.content}>
                 <h2 className={style.formTitle}>Contact us</h2>
-                {typeof interestedIn === "string" && (
-                  <input
-                    type="hidden"
-                    name="interestedIn"
-                    value={interestedIn}
-                  />
-                )}
-
                 <Input
                   className={subscribeStyle.input}
                   name="email"

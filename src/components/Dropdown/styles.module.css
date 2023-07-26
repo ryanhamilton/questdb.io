@@ -2,21 +2,20 @@
   --color-background: rgba(50, 52, 64, 1);
   --color-text: rgba(177, 181, 211, 1);
   position: relative;
-  width: 100%;
   cursor: pointer;
 }
 
 .root select {
   padding: 0.5rem 1rem;
-  width: 100%;
   opacity: 0;
   cursor: pointer;
   background: var(--color-background);
   color: var(--color-text);
+  width: 100%;
 }
 
 .root select:focus + .view {
-  outline: 1px solid #D14671;
+  outline: 1px solid #d14671;
 }
 
 .view {
@@ -32,10 +31,11 @@
   background: var(--color-background);
   color: var(--color-text);
   border-radius: 6px;
+  white-space: nowrap;
 }
 
 .view:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 20px;
   height: 20px;
@@ -47,6 +47,6 @@
 }
 
 :global(html[data-theme="light"]) .root {
-  --color-background: #DDDEDF;
-  --color-text: #1E1E1E;
+  --color-background: #dddedf;
+  --color-text: #1e1e1e;
 }

@@ -1,14 +1,12 @@
 import React from "react"
 import Layout from "../theme/Layout"
-import Button from "@theme/Button"
 
 import { Section } from "../components/Section"
-import { Plans } from "../modules/pricing/plans"
-import { OtherUseCases } from "../modules/pricing/other-use-cases"
-import { PricingChoices } from "../modules/pricing/pricing-choices"
+import { Products } from "../modules/pricing/products"
 import { HighPerformer } from "../modules/pricing/high-performer"
 import { Quotes } from "../modules/pricing/quotes"
 import { BookADemo } from "../modules/book-a-demo/buttons"
+import { PlanCalculator } from "../modules/pricing/pricing-calculator"
 
 const CloudPage = () => (
   <Layout
@@ -19,17 +17,12 @@ const CloudPage = () => (
   >
     <Section>
       <Section.Title level={1} center>
-        QuestDB Cloud Pricing
+        QuestDB Pricing
       </Section.Title>
-
-      <Section.Subtitle center>
-        With QuestDB Cloud we bring elasticity, availability
-        <br /> and security with a fully managed Cloud offering
-      </Section.Subtitle>
     </Section>
 
     <Section center noGap>
-      <Plans />
+      <Products />
     </Section>
 
     <Section center>
@@ -44,25 +37,7 @@ const CloudPage = () => (
       <HighPerformer />
     </Section>
 
-    <Section center>
-      <PricingChoices />
-    </Section>
-
-    <Section odd fullWidth>
-      <Section.Title size="small" center>
-        See full feature list of QuestDB Cloud
-      </Section.Title>
-
-      <Section noGap center>
-        <Button to="/cloud/" uppercase={false}>
-          More info
-        </Button>
-      </Section>
-    </Section>
-
-    <Section>
-      <OtherUseCases />
-    </Section>
+    <PlanCalculator />
   </Layout>
 )
 

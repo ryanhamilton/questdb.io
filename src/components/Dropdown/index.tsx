@@ -1,3 +1,4 @@
+import clsx from "clsx"
 import React from "react"
 import style from "./styles.module.css"
 
@@ -5,10 +6,16 @@ type Props<T = string> = {
   value: T
   onChange: (value: T) => void
   values: Array<{ label: string; value: T; disabled?: boolean }>
+  className?: string
 }
 
-export const Dropdown = <T,>({ value, onChange, values }: Props<T>) => (
-  <div className={style.root}>
+export const Dropdown = <T,>({
+  value,
+  onChange,
+  values,
+  className,
+}: Props<T>) => (
+  <div className={clsx(style.root, className)}>
     <select
       defaultValue={(value as unknown) as string}
       onChange={({ target: { value } }) => onChange((value as unknown) as T)}

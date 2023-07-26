@@ -1,3 +1,11 @@
-export const formatPrice = (num: number) => {
-  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
+export const formatPrice = (
+  num: number,
+  options?: Intl.NumberFormatOptions,
+) => {
+  return num.toLocaleString("en-US", {
+    style: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
+    ...options,
+  })
 }

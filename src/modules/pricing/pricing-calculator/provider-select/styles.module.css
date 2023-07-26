@@ -3,8 +3,14 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
-  min-height: 80px;
-  padding-top: 2rem;
+  flex: 0 1 30%;
+  min-width: 60px;
+  max-width: 100px;
+}
+
+.optionContent {
+  display: flex;
+  gap: 1rem;
 }
 
 .image {
@@ -13,13 +19,18 @@
   justify-content: center;
   border: 1px solid #323440;
   border-radius: 6px;
-  width: 100px;
+  width: 100%;
   height: 60px;
 }
 
-.selected {
-  border-color: #D14671;
+.image img {
+  object-fit: contain;
 }
+
+.selected {
+  border-color: #d14671;
+}
+
 .comingSoon {
   font-size: 10px;
 }
