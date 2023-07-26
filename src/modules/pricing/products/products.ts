@@ -20,7 +20,7 @@ export const products: ProductInfo[] = [
     pricingLabel: [{ text: "Free", emphasized: true }],
     pricingSublabel: ["forever"],
     specs: [
-      "Fast ingests, dynamic schema",
+      "Fast ingest, dynamic schema",
       "Sub-second SQL queries",
       "Performant with high-cardinality data",
     ],
@@ -56,7 +56,7 @@ export const products: ProductInfo[] = [
       "per month (est)",
     ],
     specs: [
-      "Up to 80% data compression",
+      "Up to 80% data compression ratio",
       "Elastic & highly available",
       "Role-based permissions",
     ],
