@@ -2,6 +2,7 @@
   margin-bottom: 2rem;
 }
 
+
 .card {
   --gap: 2rem;
   background-color: var(--theme-card-bg-color);

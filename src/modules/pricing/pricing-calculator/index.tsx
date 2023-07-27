@@ -12,8 +12,6 @@ import { bytesWithSuffix } from "../../../utils/bytes-with-suffix"
 import { Toggle } from "../../../components/Toggle"
 import { Link } from "@docusaurus/router"
 import clsx from "clsx"
-import Button from "@theme/Button"
-import customFields from "../../../config/customFields"
 
 type RegionSelectProps = {
   value: RegionKey
@@ -71,7 +69,7 @@ export const PlanCalculator = () => {
       : { maximumFractionDigits: 0 }
 
   return (
-    <Section id="pricing-options">
+    <>
       <Section.Title size="small" center className={style.title}>
         Explore QuestDB Cloud pricing options
       </Section.Title>
@@ -154,10 +152,7 @@ export const PlanCalculator = () => {
           )}{" "}
           <Link to="/enterprise">Need more?</Link>
         </div>
-        <div className={style.cta}>
-          <Button to={customFields.cloudUrl}>Get started</Button>
-        </div>
       </article>
-    </Section>
+    </>
   )
 }

@@ -76,12 +76,9 @@
   transform: rotate(45deg);
 }
 
-html[data-theme="light"] {
-  .track,
-  .thumb::before,
-  .thumb::after {
-    background-color: var(--theme-card-secondary-bg-color);
-    border-color: var(--theme-card-secondary-bg-color);
-  }
+html[data-theme="light"] .track,
+html[data-theme="light"] .thumb::before,
+html[data-theme="light"] .thumb::after {
+  background-color: var(--theme-card-secondary-bg-color);
+  border-color: var(--theme-card-secondary-bg-color);
 }
-

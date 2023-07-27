@@ -21,12 +21,8 @@ const CloudPage = () => (
       </Section.Title>
     </Section>
 
-    <Section center noGap>
-      <Products />
-    </Section>
-
     <Section center>
-      <BookADemo />
+      <Products />
     </Section>
 
     <Section center noGap>
@@ -37,7 +33,13 @@ const CloudPage = () => (
       <HighPerformer />
     </Section>
 
-    <PlanCalculator />
+    <Section id="pricing-options">
+      <PlanCalculator />
+    </Section>
+
+    <Section center fullWidth noGap>
+      <BookADemo />
+    </Section>
   </Layout>
 )
 
