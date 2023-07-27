@@ -45,6 +45,7 @@
   grid-template-areas:
     "start-building-button"
     "actions"
+    "credits"
     "instance-details-image"
     "instance-metrics-image";
 }
@@ -80,6 +81,7 @@
 
 .startBuildingCredits {
   justify-self: center;
+  grid-area: credits;
 }
 
 .actions {
@@ -103,6 +105,7 @@
       "instance-details-image"
       "instance-metrics-image"
       "start-building-button"
-      "actions";
+      "actions"
+      "credits";
   }
 }

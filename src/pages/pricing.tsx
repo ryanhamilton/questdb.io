@@ -1,12 +1,11 @@
 import React from "react"
 import Layout from "../theme/Layout"
-
 import { Section } from "../components/Section"
 import { Products } from "../modules/pricing/products"
 import { HighPerformer } from "../modules/pricing/high-performer"
 import { Quotes } from "../modules/pricing/quotes"
-import { BookADemo } from "../modules/book-a-demo/buttons"
 import { PlanCalculator } from "../modules/pricing/pricing-calculator"
+import { GetStarted } from "../modules/pricing/get-started"
 
 const CloudPage = () => (
   <Layout
@@ -37,9 +36,7 @@ const CloudPage = () => (
       <PlanCalculator />
     </Section>
 
-    <Section center fullWidth noGap>
-      <BookADemo />
-    </Section>
+    <GetStarted />
   </Layout>
 )
 
