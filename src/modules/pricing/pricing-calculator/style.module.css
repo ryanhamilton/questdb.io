@@ -2,7 +2,6 @@
   margin-bottom: 2rem;
 }
 
-
 .card {
   --gap: 2rem;
   background-color: var(--theme-card-bg-color);
@@ -43,12 +42,12 @@
 
 .result {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 1rem;
-  flex-basis: 100%;
-  height: 100px; /* hardcode height to ensure the same space is used for price and for "contact us" */
+  text-align: center;
+  gap: 0 1rem;
+  height: 120px; /* hardcode height to ensure the same space is used for price and for "contact us" */
 }
 
 .toggle {
@@ -58,15 +57,30 @@
   gap: 0.5rem;
 }
 
-.result h2 {
-  margin: unset;
+.result .dimmed {
+  flex: 1 0 100%;
+}
+
+.result h3 {
+  margin: 0;
   font-size: 2.5rem;
 }
 
-.result h2 a {
+.result h3 a {
   all: unset;
   font-weight: 500;
   text-decoration: underline;
+  cursor: pointer;
+}
+
+.asterisk {
+  color: var(--palette-pale-blue);
+  line-height: 1;
+}
+
+.dimmed {
+  font-size: 1rem;
+  color: var(--palette-pale-blue);
 }
 
 .compressionInfo {
@@ -86,7 +100,7 @@
   margin-bottom: 0.8rem;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 640px) {
   .card {
     padding: 2rem 4rem;
     grid-template-columns: 1fr 1fr;
@@ -97,13 +111,14 @@
   }
 
   .result {
-    align-self: center;
-    margin-top: -4rem;
-    flex-basis: 40%;
+    padding-top: 3rem;
     flex-direction: column;
+    flex-wrap: nowrap;
+    height: auto;
+    justify-content: flex-start;
   }
 
-  .result h2 {
+  .result h3 {
     font-size: 3.5rem;
   }
 

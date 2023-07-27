@@ -3,20 +3,14 @@ import * as RadixSlider from "@radix-ui/react-slider"
 import style from "./style.module.css"
 
 export type Props = {
-  disabled?: boolean
   value: number
-  min: number
-  max: number
   onChange: (value: number) => void
+  disabled?: boolean
+  min?: number
+  max?: number
   label?: string | ((value: number) => string)
-} & (
-  | {
-      step: number
-    }
-  | {
-      values: number[]
-    }
-)
+  step?: number
+}
 
 export const Slider = ({ label, value, onChange, ...sliderProps }: Props) => {
   const labelText =

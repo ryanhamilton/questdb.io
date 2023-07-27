@@ -1,9 +1,7 @@
 import { ProviderLogo } from "src/assets/types"
 
-export type ProviderKey = "aws" | "gcp" | "azure"
-
 export type Provider = {
-  key: ProviderKey
+  key: "aws" | "gcp" | "azure"
   img: ProviderLogo
   available: boolean
 }

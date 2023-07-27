@@ -1,11 +1,11 @@
 import React from "react"
-import { ProviderKey, providers } from "./providers"
+import { Provider, providers } from "./providers"
 import style from "./styles.module.css"
 import { ProviderSelectItem } from "./select-item"
 import clsx from "clsx"
 
 type Props = {
-  selectedProvider: ProviderKey
+  selectedProvider: Provider["key"]
   className?: string
 }
 

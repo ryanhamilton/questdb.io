@@ -4,10 +4,9 @@ import type { Region, RegionKey } from "./prices"
 import { cpuPrices, storagePrices, regions } from "./prices"
 import { Dropdown } from "../../../components/Dropdown"
 import { Section } from "../../../components/Section"
+import { Slider } from "../../../components/Slider"
 import style from "./style.module.css"
 import { ProviderSelect } from "./provider-select"
-import { ProviderKey } from "./provider-select/providers"
-import { CPUSlider, StorageSlider } from "./slider"
 import { bytesWithSuffix } from "../../../utils/bytes-with-suffix"
 import { Toggle } from "../../../components/Toggle"
 import { Link } from "@docusaurus/router"
@@ -33,12 +32,16 @@ const RegionSelect = ({ value, onChange, regions }: RegionSelectProps) => (
   />
 )
 
-type RateUnit = "hour" | "month"
+enum Rate {
+  hour = "hour",
+  month = "month",
+}
 
 export const PlanCalculator = () => {
   const [region, setRegion] = useState<RegionKey>("us-east-2")
-  const provider: ProviderKey = "aws"
-
+  const [cpuSliderIndex, setCPUSliderIndex] = useState(0)
+  const [storageSliderIndex, setStorageSliderIndex] = useState(0)
+  const [rate, setRate] = useState<Rate>(Rate.hour)
   const plan = useMemo(
     () => ({
       cpu: cpuPrices.filter((plan) => plan.region === region),
@@ -47,24 +50,12 @@ export const PlanCalculator = () => {
     [region],
   )
 
-  const [cpuSliderIndex, setCPUSliderIndex] = useState(0)
-  const [storageSliderIndex, setStorageSliderIndex] = useState(0)
-
   const selectedCPU = plan.cpu[cpuSliderIndex]
   const selectedStorage = plan.storage[storageSliderIndex]
-
-  const price =
-    selectedCPU.price === "contact" || selectedStorage.price === "contact"
-      ? "contact"
-      : selectedCPU.price + selectedStorage.price
-
-  const equivalentStorage = bytesWithSuffix(selectedStorage.storageGB * 5, 3)
-
-  const [pricePer, setPricePer] = useState<RateUnit>("hour")
-
-  const priceMultiplier = pricePer === "hour" ? 1 : 730
+  const equivalentStorage = bytesWithSuffix(selectedStorage.storage * 5, 3)
+  const priceMultiplier = rate === Rate.hour ? 1 : 730
   const priceFormattingOptions: Intl.NumberFormatOptions =
-    pricePer === "hour"
+    rate === Rate.hour
       ? { minimumFractionDigits: 3 }
       : { maximumFractionDigits: 0 }
 
@@ -76,7 +67,7 @@ export const PlanCalculator = () => {
 
       <article className={style.card}>
         <ProviderSelect
-          selectedProvider={provider}
+          selectedProvider="aws"
           className={style.providerSelect}
         />
 
@@ -88,45 +79,72 @@ export const PlanCalculator = () => {
         <div className={style.sliders}>
           <div className={style.labelledInput}>
             Instance
-            <CPUSlider
-              index={cpuSliderIndex}
-              values={plan.cpu}
+            <Slider
+              value={cpuSliderIndex}
               onChange={(value) => setCPUSliderIndex(value)}
+              label={(index: number) => {
+                const { cores, ram } = plan.cpu[index]
+                const { value, suffix: ramSuffix } = bytesWithSuffix(ram, 3)
+                return `${cores} cores (${value} ${ramSuffix} RAM)`
+              }}
+              max={plan.cpu.length - 1}
             />
           </div>
 
           <div className={style.labelledInput}>
             Storage
-            <StorageSlider
-              index={storageSliderIndex}
-              values={plan.storage}
+            <Slider
+              value={storageSliderIndex}
               onChange={(value) => setStorageSliderIndex(value)}
+              label={(value: number) => {
+                const formatted = bytesWithSuffix(
+                  plan.storage[value].storage,
+                  3,
+                )
+                return `${formatted.value} ${formatted.suffix}`
+              }}
+              max={plan.storage.length - 1}
             />
           </div>
         </div>
 
         <div className={style.result}>
-          {price === "contact" ? (
-            <hgroup>
-              <h2>
-                <Link to="/enterprise/contact">Contact us</Link>
-              </h2>
-              <p>for custom pricing</p>
-            </hgroup>
-          ) : (
+          {typeof selectedCPU.price === "number" &&
+          typeof selectedStorage.price === "number" ? (
             <>
-              <h2>
-                {formatPrice(price * priceMultiplier, priceFormattingOptions)}
-              </h2>
+              <h3>
+                {formatPrice(
+                  (selectedCPU.price + selectedStorage.price) * priceMultiplier,
+                  priceFormattingOptions,
+                )}
+                {rate === Rate.month && (
+                  <>
+                    <sup className={style.asterisk}>*</sup>
+                    <span className={style.dimmed}> (est)</span>
+                  </>
+                )}
+              </h3>
               <div className={style.toggle}>
-                <span>per</span>
+                per
                 <Toggle
-                  options={["hour", "month"]}
-                  selected={pricePer}
-                  onClick={(value) => setPricePer(value)}
+                  options={[Rate.hour, Rate.month]}
+                  selected={rate}
+                  onClick={(value) => setRate(value)}
                 />
               </div>
+              {rate === Rate.month && (
+                <span className={style.dimmed}>
+                  * assuming continuous 24/7 runtime.
+                </span>
+              )}
             </>
+          ) : (
+            <hgroup>
+              <h3>
+                <Link to="/enterprise/contact">Contact us</Link>
+              </h3>
+              <p>for custom pricing</p>
+            </hgroup>
           )}
         </div>
 
@@ -136,9 +154,7 @@ export const PlanCalculator = () => {
             {equivalentStorage.value} {equivalentStorage.suffix}
           </span>{" "}
           of uncompressed storage
-          {selectedStorage.price === "contact" ? (
-            "."
-          ) : (
+          {typeof selectedStorage.price === "number" ? (
             <>
               , saving up to{" "}
               <span className={style.accent}>
@@ -146,9 +162,11 @@ export const PlanCalculator = () => {
                   selectedStorage.price * 4 * priceMultiplier,
                   priceFormattingOptions,
                 )}
-                /{pricePer}.
+                /{rate}.
               </span>
             </>
+          ) : (
+            "."
           )}{" "}
           <Link to="/enterprise">Need more?</Link>
         </div>
