@@ -90,6 +90,15 @@
   margin-top: calc(0.5rem - var(--gap));
 }
 
+.compressionInfo button {
+  all: unset;
+  color: var(--ifm-link-color);
+}
+
+.compressionInfo button:focus {
+  text-decoration: underline;
+}
+
 .accent {
   color: var(--theme-card-text-color);
 }

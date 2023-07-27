@@ -11,6 +11,8 @@ import { bytesWithSuffix } from "../../../utils/bytes-with-suffix"
 import { Toggle } from "../../../components/Toggle"
 import { Link } from "@docusaurus/router"
 import clsx from "clsx"
+import { GetAccess } from "../../../modules/cloud/get-access"
+import Button from "@theme/Button"
 
 type RegionSelectProps = {
   value: RegionKey
@@ -168,7 +170,7 @@ export const PlanCalculator = () => {
           ) : (
             "."
           )}{" "}
-          <Link to="/enterprise">Need more?</Link>
+          <GetAccess trigger={<Button variant="plain">Need more?</Button>} />
         </div>
       </article>
     </>
