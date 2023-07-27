@@ -88,17 +88,59 @@ Docker. However, it is recommended to define the version used.
 
 ## Container status
 
-You can check the status of your container with `docker ps`. It also lists the
-exposed ports:
+You can check the status of your container with `docker ps`. 
 
-```shell
+It also lists the exposed ports, container name, uptime and more:
+
+```shell title="Finding container status with docker ps"
 docker ps
 ```
 
-```shell title="Result"
+```shell title="Result of docker ps"
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                NAMES
 dd363939f261        questdb/questdb     "/app/bin/java -m io…"   3 seconds ago       Up 2 seconds        8812/tcp, 9000/tcp   frosty_gauss
 ```
+
+This container: 
+
+* has an id of `dd363939f261`
+* uses ports `8812` & `9000`, for Postgres wire protocol and HTTP respectively
+* is using a `questdb/questdb` image
+* ran java to start the binary
+* is 3 seconds old
+* has been up for 2 seconds
+* has the unfortunate name of `frosty_gauss`
+
+For full container status information, see the [`docker ps` manual](https://docs.docker.com/engine/reference/commandline/ps/).
+
+### Debugging container logs
+
+Docker may generate a runtime error.
+
+The error may not be accurate, as the true culprit is often indicated higher up in the logs.
+
+To see the full log, retrieve the UUID - also known as the `CONTAINER ID` - using `docker ps`:
+
+```shell title="Finding the CONTAINER ID"
+CONTAINER ID        IMAGE               ...
+dd363939f261        questdb/questdb     ...
+```
+
+Now pass the `CONTAINER ID` - or `dd363939f261` - to the `docker logs` command:
+
+
+```shell title="Generating a docker log from a CONTAINER ID"
+$ docker logs dd363939f261
+No arguments found, start with default arguments
+Running as questdb user                                                                                      
+Log configuration loaded from: /var/lib/questdb/conf/log.conf
+...
+...
+```
+
+Note that the log will pull from  `/var/lib/questdb/conf/log.conf` by default.
+
+Sharing this log when seeking support for Docker deployments will help us find the root cause.
 
 ## Importing data and sending queries
 
@@ -300,10 +342,8 @@ docker start docker_questdb
 docker stop docker_questdb
 ```
 
-Alternatively, users can obtain a running container's ID with `docker ps` and
-restart it using the
-[UUID short identifier](https://docs.docker.com/engine/reference/run/#name---name):
+Alternatively, restart it using the `CONTAINER ID`:
 
-```shell title="Starting a container by ID"
+```shell title="Starting a container by CONTAINER ID"
 docker start dd363939f261
 ```
