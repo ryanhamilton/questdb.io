@@ -148,7 +148,7 @@ function BlogPostPage(props: Props): JSX.Element {
                   ))}
               </ul>
             </div>
-          )}          
+          )}
         </header>
 
         <article className={styles.markdown}>

@@ -5,7 +5,7 @@ import Button from "@theme/Button"
 export const BlogCTA = () => (
   <div className={ctaCss.button}>
     <Button variant="tertiary" newTab={false}>
-              Start building now
+      Start building now
     </Button>
   </div>
 )
