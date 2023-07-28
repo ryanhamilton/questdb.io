@@ -174,7 +174,7 @@ A complete list of Windows error codes may be found [here](https://docs.microsof
 | 5            | ERROR_ACCESS_DENIED           | Access is denied.                                                                            |
 | 6            | ERROR_INVALID_HANDLE          | The handle is invalid.                                                                       |
 | 7            | ERROR_ARENA_TRASHED           | The storage control blocks were destroyed.                                                   |
-| 8            | ERROR_NOT_ENOUGH_MEMORY       | Not enough storage is available to process this command.                                     |
+| 8            | ERROR_NOT_ENOUGH_MEMORY       | Not enough memory is available to process this command.                                      |
 | 9            | ERROR_INVALID_BLOCK           | The storage control block address is invalid.                                                |
 | 10           | ERROR_BAD_ENVIRONMENT         | The environment is incorrect.                                                                |
 | 11           | ERROR_BAD_FORMAT              | An attempt was made to load a program with an incorrect format.                              |
