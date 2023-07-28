@@ -16,6 +16,7 @@ plugins/*/compiled
 .env.development.local
 .env.test.local
 .env.production.local
+questdb.io.code-workspace
 snippets/db
 snippets/package-lock.json
 snippets/yarn.lock
@@ -29,3 +30,4 @@ yarn-error.log*
 .log
 src/css/infima.css
 .ignore
+
