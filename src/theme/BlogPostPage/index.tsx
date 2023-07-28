@@ -8,7 +8,6 @@ import { MDXProvider } from "@mdx-js/react"
 import type { Props, Metadata } from "@theme/BlogPostPage"
 import MDXComponents from "@theme/MDXComponents"
 import Seo from "@theme/Seo"
-import customFields from "../../config/customFields"
 import { ensureTrailingSlash } from "../../utils"
 import { StructuredData } from "../../components/StructuredData"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
@@ -47,8 +46,6 @@ function BlogPostPage(props: Props): JSX.Element {
     permalink,
     tags,
     readingTime,
-    source,
-    editUrl,
   } = metadata as MetadataWithSource
   const { author, image, keywords } = frontMatter
 
@@ -56,13 +53,6 @@ function BlogPostPage(props: Props): JSX.Element {
   const authorTitle = frontMatter.author_title ?? frontMatter.authorTitle
   const authorImageURL =
     frontMatter.author_image_url ?? frontMatter.authorImageURL
-
-  const contributeUrl =
-    editUrl ??
-    `${customFields.websiteGithubUrl}/edit/master/${source.replace(
-      "@site",
-      "",
-    )}`
 
   return (
     <>
