@@ -20,6 +20,7 @@ import Screenshot from "@theme/Screenshot"
   height={373}
   src="/img/docs/concepts/partitionModel.svg"
   width={745}
+  forceTheme="dark"
 />
 
 ## Properties

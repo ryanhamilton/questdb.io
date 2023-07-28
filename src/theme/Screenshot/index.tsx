@@ -12,6 +12,7 @@ type Props = {
   src: string
   title?: string
   width?: number
+  forceTheme?: "light" | "dark"
 }
 
 const Screenshot = ({
@@ -23,6 +24,7 @@ const Screenshot = ({
   src,
   title,
   width,
+  forceTheme,
 }: Props) => (
   <figure>
     <img
@@ -32,6 +34,8 @@ const Screenshot = ({
         [styles.shadow]: shadow,
         [styles.small]: small,
         [styles.title]: title != null,
+        [styles.forceDark]: forceTheme === "dark",
+        [styles.forceLight]: forceTheme === "light",
       })}
       height={height}
       src={src}

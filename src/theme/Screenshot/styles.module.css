@@ -3,6 +3,14 @@
   background-color: var(--theme-screenshot-background-color);
 }
 
+.forceDark {
+  background-color: var(--palette-charade);
+}
+
+.forceLight {
+  background-color: white;
+}
+
 .shadow {
   box-shadow: var(--image-shadow);
 }
