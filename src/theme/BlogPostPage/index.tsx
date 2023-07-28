@@ -1,7 +1,6 @@
 import React from "react"
 import Layout from "@theme/Layout"
 import { Section } from "../../components/Section"
-import { ActionFooter } from "../../components/ActionFooter"
 import Link from "@docusaurus/Link"
 import { usePluralForm } from "@docusaurus/theme-common"
 import { translate } from "@docusaurus/Translate"
@@ -9,12 +8,12 @@ import { MDXProvider } from "@mdx-js/react"
 import type { Props, Metadata } from "@theme/BlogPostPage"
 import MDXComponents from "@theme/MDXComponents"
 import Seo from "@theme/Seo"
-import EditThisPage from "@theme/EditThisPage"
 import customFields from "../../config/customFields"
 import { ensureTrailingSlash } from "../../utils"
 import { StructuredData } from "../../components/StructuredData"
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext"
 import styles from "./styles.module.css"
+import { BlogCTA } from "../../components/BlogCTA"
 
 function useReadingTimePlural() {
   const { selectMessage } = usePluralForm()
@@ -141,15 +140,6 @@ function BlogPostPage(props: Props): JSX.Element {
               </>
             )}
           </div>
-        </header>
-
-        <article className={styles.markdown}>
-          <MDXProvider components={MDXComponents}>
-            <BlogPostContents />
-          </MDXProvider>
-        </article>
-
-        <footer className={styles.footer}>
           {tags.length > 0 && (
             <div className={styles.tags}>
               Tags:
@@ -168,13 +158,17 @@ function BlogPostPage(props: Props): JSX.Element {
                   ))}
               </ul>
             </div>
-          )}
+          )}          
+        </header>
 
-          <EditThisPage editUrl={contributeUrl} />
-        </footer>
+        <article className={styles.markdown}>
+          <MDXProvider components={MDXComponents}>
+            <BlogPostContents />
+          </MDXProvider>
+        </article>
 
         <Section>
-          <ActionFooter />
+          <BlogCTA />
         </Section>
       </Layout>
     </>
