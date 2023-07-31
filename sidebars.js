@@ -108,6 +108,13 @@ module.exports = {
       type: "category",
       items: [
         {
+          type: "doc",
+          id: "third-party-tools",
+          customProps: {
+            hidden: true, // hidden from sidebar but accessible via link
+          },
+        },
+        {
           customProps: {
             tag: "New",
           },
@@ -244,7 +251,6 @@ module.exports = {
                 "reference/sql/alter-table-set-param",
                 "reference/sql/alter-table-set-type",
                 "reference/sql/alter-table-squash-partitions",
-                
               ],
             },
             {
