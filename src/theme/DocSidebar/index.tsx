@@ -50,13 +50,15 @@ const DocSidebarItems = memo(function DocSidebarItems({
 }) {
   return (
     <>
-      {items.map((item, index) =>
-        item.type === "category" ? (
-          <DocSidebarItemCategory key={index} item={item} {...props} />
-        ) : (
-          <DocSidebarItemLink key={index} item={item} {...props} />
-        ),
-      )}
+      {items
+        .filter((item) => !((item.customProps?.hidden as boolean) ?? false))
+        .map((item, index) =>
+          item.type === "category" ? (
+            <DocSidebarItemCategory key={index} item={item} {...props} />
+          ) : (
+            <DocSidebarItemLink key={index} item={item} {...props} />
+          ),
+        )}
     </>
   )
 })
