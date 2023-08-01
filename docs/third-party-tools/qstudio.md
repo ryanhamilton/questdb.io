@@ -24,7 +24,7 @@ It works on every operating system and with every database including QuestDB via
 host:localhost
 port:8812
 database:qdb
-user:user
+user:admin
 password:quest
 ```
 
