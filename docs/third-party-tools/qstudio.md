@@ -32,7 +32,7 @@ password:quest
 
 Queries can be ran by either pressing Ctrl+Enter to run the current line or by pressing Ctrl+E to run the highlighted code.
 
-![Screenshot of the qStudio UI query](/img/docs/guide/qstudio/qstudio-query.png)
+![Screenshot of the qStudio UI query](/img/guides/qstudio/qstudio-query.png)
 
 ## See also
 
